@@ -1,4 +1,25 @@
 import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import * as moment from 'moment';
+import { Theme } from 'src/app/model/theme';
+import { ThemeService } from 'src/app/services/theme.service';
+
+enum Difficulty {
+  EASY = 'EASY',
+  MEDIUM = 'MEDIUM',
+  HARD = 'HARD',
+  CUSTOM = 'CUSTOM'
+}
+
+function sumQuestionsValid(control: AbstractControl): ValidationErrors {
+  if (control.parent?.get('easyQuestions')?.value +
+    control.parent?.get('mediumQuestions')?.value +
+    control.parent?.get('hardQuestions')?.value < 10) {     
+      return { invalid: true };
+    } else {
+      return {};
+    }
+}
 
 @Component({
   selector: 'app-quiz-settings',
@@ -7,9 +28,77 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuizSettingsComponent implements OnInit {
 
-  constructor() { }
+  form: FormGroup;
+
+  themes?: Theme[];
+
+  constructor(
+    private fb: FormBuilder,
+    private themeService: ThemeService
+  ) {
+    this.form = fb.group({
+      maximalPlayerNumber: new FormControl(5, [Validators.max(10), Validators.min(1)]),
+      closeDate: new FormControl(moment().format('YYYY. MM. DD.'), [Validators.required]),
+      themes: new FormControl([], Validators.minLength(1)),
+      easyQuestions: new FormControl(3, [Validators.max(10), sumQuestionsValid]),
+      mediumQuestions: new FormControl(7, [Validators.max(10), sumQuestionsValid]),
+      hardQuestions: new FormControl(0, [Validators.max(10), sumQuestionsValid])
+    });
+   }
 
   ngOnInit(): void {
+    this.themeService.getThemes().subscribe(
+      themes => this.themes = themes
+    );
+    this.disableNumberInputs();
   }
 
+  createGame(): void {
+    // TODO: implement game creation
+  }
+
+  toggleThemeSelection(theme: Theme): void {
+    const index = this.form.value.themes.indexOf(theme);
+    if (index > -1) {
+      this.form.value.themes.splice(index, 1);
+    } else {
+      this.form.value.themes.push(theme);
+    }
+  }
+
+  setDifficulty(event: any): void {
+    switch (event.target.value) {
+      case Difficulty.EASY:
+        this.form.get('easyQuestions')?.setValue(7);
+        this.form.get('mediumQuestions')?.setValue(3);
+        this.form.get('hardQuestions')?.setValue(0);
+
+        this.disableNumberInputs();
+        break;
+      case Difficulty.MEDIUM:
+        this.form.get('easyQuestions')?.setValue(2);
+        this.form.get('mediumQuestions')?.setValue(6);
+        this.form.get('hardQuestions')?.setValue(2);
+
+        this.disableNumberInputs();
+        break;
+      case Difficulty.HARD:
+        this.form.get('easyQuestions')?.setValue(0);
+        this.form.get('mediumQuestions')?.setValue(3);
+        this.form.get('hardQuestions')?.setValue(7);
+
+        this.disableNumberInputs();
+        break;
+      case Difficulty.CUSTOM:
+        this.form.get('easyQuestions')?.enable();
+        this.form.get('mediumQuestions')?.enable();
+        this.form.get('hardQuestions')?.enable();
+    }
+  }
+
+  private disableNumberInputs(): void {
+    this.form.get('easyQuestions')?.disable();
+    this.form.get('mediumQuestions')?.disable();
+    this.form.get('hardQuestions')?.disable();
+  }
 }

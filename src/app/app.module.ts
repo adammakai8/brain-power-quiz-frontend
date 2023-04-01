@@ -17,6 +17,7 @@ import { GameComponent } from './pages/game/game.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { AuthService } from './services/auth.service';
+import { ThemeService } from './services/theme.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { AuthService } from './services/auth.service';
     })
   ],
   providers: [
-    AuthService
+    AuthService,
+    ThemeService
   ],
   bootstrap: [AppComponent]
 })

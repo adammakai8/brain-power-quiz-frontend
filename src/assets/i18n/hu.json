@@ -15,5 +15,26 @@
       "statistics": "Statisztika",
       "forum": "Fórum"
     }
+  },
+  "quiz-settings": {
+    "title": "Új játék beállításai",
+    "max-players": "Maximális játékosok száma: {{count}}",
+    "close-date": "Lezárási dátum:",
+    "category": "Kategóriák",
+    "diffculty": {
+      "diffculty": "Nehézség",
+      "options": {
+        "easy": "Könnyű ({{easy}} egyszerű, {{med}} közepes kérdés)",
+        "medium": "Közepes ({{easy}} egyszerű, {{med}} közepes, {{hard}} nehéz kérdés)",
+        "hard": "Nehéz ({{med}} közepes, {{hard}} nehéz kérdés)",
+        "custom": {
+          "custom": "Egyedi: ",
+          "easy": "Könnyű",
+          "medium": "Közepes",
+          "hard": "Nehéz"
+        }
+      }
+    },
+    "create": "Játék létrehozása"
   }
 }
