@@ -4,14 +4,14 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss']
 })
-export class LoginComponent implements OnInit {
-
+export class RegisterComponent implements OnInit {
+  
   form: FormGroup;
-
+  
   constructor(
     private fb: FormBuilder,
     private service: AuthService,
@@ -19,6 +19,8 @@ export class LoginComponent implements OnInit {
   ) {
     this.form = this.fb.group({
       username: ['', Validators.required],
+      email: ['', Validators.required],
+      birthYear: ['', Validators.required],
       password: ['', Validators.required]
     });
    }
@@ -26,19 +28,14 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  login(): void {
+  register(): void {
     if (this.form.valid) {
-      console.log(this.form.value);
-      
-      this.service.login(this.form.value);
-    } else {
-      console.log('invalid form');
-      
+      this.service.register(this.form.value);
     }
   }
 
-  navigateToRegister(): void {
-    this.router.navigate(['register']);
+  navigateToLogin(): void {
+    this.router.navigate(['login']);
   }
 
 }

@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ReactiveFormsModule } from "@angular/forms";
 
 // import ngx-translate and the http loader
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -14,6 +15,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { QuizSettingsComponent } from './pages/quiz-settings/quiz-settings.component';
 import { GameComponent } from './pages/game/game.component';
 import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -21,12 +24,14 @@ import { LoginComponent } from './pages/login/login.component';
     LoginComponent,
     HomeComponent,
     QuizSettingsComponent,
-    GameComponent
+    GameComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    ReactiveFormsModule,
 
     // ngx-translate and the loader module
     HttpClientModule,
@@ -38,7 +43,9 @@ import { LoginComponent } from './pages/login/login.component';
         }
     })
   ],
-  providers: [],
+  providers: [
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

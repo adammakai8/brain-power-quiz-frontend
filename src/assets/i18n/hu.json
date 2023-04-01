@@ -1,8 +1,11 @@
 {
-  "login": {
-    "title": "Bejelentkezés",
+  "auth": {
+    "login": "Bejelentkezés",
+    "register": "Regisztráció",
     "username": "Felhasználónév",
-    "password": "Jelszó"
+    "password": "Jelszó",
+    "email": "Email cím",
+    "birth-year": "Születési év"
   },
   "home": {
     "title": "Brain Power Quiz",
