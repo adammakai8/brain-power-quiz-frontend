@@ -3,5 +3,14 @@
     "title": "Bejelentkezés",
     "username": "Felhasználónév",
     "password": "Jelszó"
+  },
+  "home": {
+    "title": "Brain Power Quiz",
+    "menu": {
+      "new-game": "Új játék",
+      "ranks": "Ranglista",
+      "statistics": "Statisztika",
+      "forum": "Fórum"
+    }
   }
 }

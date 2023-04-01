@@ -1,0 +1,18 @@
+.card {
+    background-color: azure;
+    
+    &:hover {
+        background-color: lightblue;
+        cursor: pointer;
+    }
+}
+
+.btn-primary {
+    color: black;
+    background-color: darkseagreen;
+    border: 0;
+
+    &:hover {
+        background-color: lightgreen;
+    }
+}

@@ -4,15 +4,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { LoginComponent } from './pages/login/login.component';
 
 // import ngx-translate and the http loader
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+
 import { HomeComponent } from './pages/home/home.component';
 import { QuizSettingsComponent } from './pages/quiz-settings/quiz-settings.component';
 import { GameComponent } from './pages/game/game.component';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
