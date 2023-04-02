@@ -28,9 +28,8 @@ export class LoginComponent implements OnInit {
 
   login(): void {
     if (this.form.valid) {
-      console.log(this.form.value);
-      
-      this.service.login(this.form.value);
+      this.service.login(this.form.value)
+        .subscribe(() => this.router.navigate(['home']));
     } else {
       console.log('invalid form');
       

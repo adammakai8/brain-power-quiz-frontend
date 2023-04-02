@@ -30,7 +30,8 @@ export class RegisterComponent implements OnInit {
 
   register(): void {
     if (this.form.valid) {
-      this.service.register(this.form.value);
+      this.service.register(this.form.value)
+        .subscribe(() => this.router.navigate(['home']));
     }
   }
 
