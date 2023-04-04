@@ -18,6 +18,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { AuthService } from './services/auth.service';
 import { ThemeService } from './services/theme.service';
+import { QuizBrowserComponent } from './pages/quiz-browser/quiz-browser.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ThemeService } from './services/theme.service';
     HomeComponent,
     QuizSettingsComponent,
     GameComponent,
-    RegisterComponent
+    RegisterComponent,
+    QuizBrowserComponent
   ],
   imports: [
     BrowserModule,

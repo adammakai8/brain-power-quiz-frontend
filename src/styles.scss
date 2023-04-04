@@ -12,3 +12,15 @@ html, body {
     height: 100% !important;
     overflow-y: hidden;
 }
+
+html {
+    background-image: url('./assets/pictures/vectorstock_30182681.png');
+    
+    body {
+        background-color: rgba($color: #ffffff, $alpha: 0.9);
+    }
+}
+
+.white-bg {
+    background-color: #ffffff;
+}

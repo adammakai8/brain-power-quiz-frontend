@@ -1,0 +1,47 @@
+<div class="h-100 m-5 mt-3 d-flex flex-column justify-content-center">
+    <div class="d-flex justify-content-between">
+        <h1>{{ 'quiz-browser.title' | translate }}</h1>
+        <button type="button" class="btn btn-success btn-lg m-1" (click)="createNewGame()">{{ 'quiz-browser.new-game' | translate }}</button>
+    </div>
+    <form class="d-flex flex-row mt-3" [formGroup]="form">
+        <div class="col-4 me-1">
+            <label class="form-label h5">{{ 'quiz-browser.filters.category' | translate }}</label>
+            <div class="overflow-auto flex-fill border p-2 white-bg">
+                <ul class="list-group border-0">
+                    <li *ngFor="let theme of themes; let i = index">
+                        <input class="form-check-input me-1" type="checkbox" value="" id="{{ 'theme' + i }}" (click)="toggleThemeSelection(theme)">
+                        <label class="form-check-label" for="{{ 'theme' + i }}">{{ theme.text }}</label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-8 ms-1 pe-2">
+            <div class="form-outline mb-2">
+                <label class="form-label h5" for="quizname">{{ 'quiz-browser.filters.name' | translate }}</label>
+                <input type="text" id="quizname" class="form-control" formControlName="name" />
+            </div>
+            <div>
+                <label class="h5">{{ 'quiz-browser.filters.maxplayers.title' | translate }}</label>
+                <div class="row">
+                    <div class="col-6 form-outline mb-2">
+                        <label class="form-label h6" for="playermin">{{ 'quiz-browser.filters.maxplayers.min' | translate }}</label>
+                        <input type="number" min="0" max="10" id="playermin" class="form-control" formControlName="playermin" />
+                    </div>
+                    <div class="col-6 form-outline mb-2">
+                        <label class="form-label h6" for="playermax">{{ 'quiz-browser.filters.maxplayers.max' | translate }}</label>
+                        <input type="number" min="0" max="10" id="playermax" class="form-control" formControlName="playermax" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                
+            </div>
+        </div>
+    </form>
+    <div class="d-flex justify-content-end">
+        <button type="button" class="btn btn-primary m-1" (click)="search()">{{ 'quiz-browser.filters.search' | translate }}</button>
+    </div>
+    <div class="overflow-auto flex-fill border mt-2 mb-4 white-bg">
+
+    </div>
+</div>
