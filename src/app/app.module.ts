@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ReactiveFormsModule } from "@angular/forms";
+import { NgbCollapseModule, NgbDatepickerModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 // import ngx-translate and the http loader
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -35,6 +35,9 @@ import { QuizBrowserComponent } from './pages/quiz-browser/quiz-browser.componen
     AppRoutingModule,
     NgbModule,
     ReactiveFormsModule,
+    NgbDatepickerModule,
+    FormsModule,
+    NgbCollapseModule,
 
     // ngx-translate and the loader module
     HttpClientModule,

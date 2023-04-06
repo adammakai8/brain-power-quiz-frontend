@@ -48,6 +48,7 @@
         "min": "Legalább",
         "max": "Legfeljebb"
       },
+      "valid-date": "Játék érvényes (-tól-ig)",
       "search": "Keresés"
     }
   }
