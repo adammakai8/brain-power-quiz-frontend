@@ -3,7 +3,8 @@
         <div class="d-flex flex-row align-items-baseline" role="button" (click)="isCollapsed = !isCollapsed" 
             [attr.aria-expanded]="!isCollapsed" aria-controls="collapseFilters">
             <h1>{{ 'quiz-browser.title' | translate }}</h1>
-            <span class="ms-2 h2 bi bi-chevron-down"></span>
+            <span *ngIf="!isCollapsed" class="ms-2 h2 bi bi-chevron-down"></span>
+            <span *ngIf="isCollapsed" class="ms-2 h2 bi bi-chevron-right"></span>
         </div>
         <button type="button" class="btn btn-success btn-lg m-1" (click)="createNewGame()">{{ 'quiz-browser.new-game' | translate }}</button>
     </div>

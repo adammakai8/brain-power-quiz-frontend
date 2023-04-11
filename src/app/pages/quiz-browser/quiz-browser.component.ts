@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgbCalendar, NgbDate, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { Theme } from 'src/app/model/theme';
 import { ThemeService } from 'src/app/services/theme.service';
@@ -23,6 +24,7 @@ export class QuizBrowserComponent implements OnInit {
     private fb: FormBuilder,
     private calendar: NgbCalendar,
     public formatter: NgbDateParserFormatter,
+    private router: Router,
     private themeService: ThemeService
   ) {
     this.form = fb.group({
@@ -91,6 +93,6 @@ export class QuizBrowserComponent implements OnInit {
   }
 
   createNewGame() {
-
+    this.router.navigate(['newgame']);
   }
 }
