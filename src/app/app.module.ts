@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ReactiveFormsModule } from "@angular/forms";
+import { NgbCollapseModule, NgbDatepickerModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 // import ngx-translate and the http loader
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -18,6 +18,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { AuthService } from './services/auth.service';
 import { ThemeService } from './services/theme.service';
+import { QuizBrowserComponent } from './pages/quiz-browser/quiz-browser.component';
 import { AdminLoginComponent } from './pages/login/adminlogin.component';
 import { ThemeComponent } from './pages/admin/theme/theme.component';
 import { ThemeCreateComponent } from './pages/admin/theme/theme-create.component';
@@ -35,6 +36,8 @@ import { ThemeUpdateComponent } from './pages/admin/theme/theme-update.component
     QuizSettingsComponent,
     GameComponent,
     RegisterComponent,
+    QuizBrowserComponent
+    RegisterComponent,
     ThemeComponent,
     ThemeCreateComponent,
     ThemeUpdateComponent,
@@ -46,6 +49,9 @@ import { ThemeUpdateComponent } from './pages/admin/theme/theme-update.component
     AppRoutingModule,
     NgbModule,
     ReactiveFormsModule,
+    NgbDatepickerModule,
+    FormsModule,
+    NgbCollapseModule,
 
     // ngx-translate and the loader module
     HttpClientModule,

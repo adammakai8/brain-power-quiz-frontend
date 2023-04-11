@@ -37,6 +37,21 @@
     },
     "create": "Játék létrehozása"
   },
+  "quiz-browser": {
+    "title": "Quiz kereső",
+    "new-game": "Új játék",
+    "filters": {
+      "name": "Quiz neve",
+      "category": "Kategória",
+      "maxplayers": {
+        "title": "Maximális játékosok száma",
+        "min": "Legalább",
+        "max": "Legfeljebb"
+      },
+      "valid-date": "Játék érvényes (-tól-ig)",
+      "search": "Keresés"
+    }
+  },
   "admin": {
     "navbar": {
       "theme": "Téma",

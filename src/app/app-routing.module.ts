@@ -4,6 +4,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { QuizSettingsComponent } from './pages/quiz-settings/quiz-settings.component';
+import { QuizBrowserComponent } from './pages/quiz-browser/quiz-browser.component';
 import { AdminLoginComponent } from './pages/login/adminlogin.component';
 import { ThemeComponent } from './pages/admin/theme/theme.component';
 import { QuestionComponent } from './pages/admin/question/question.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'theme/update/:id', component: ThemeUpdateComponent },
   { path: 'question', component: QuestionComponent },
   { path: 'newgame', component: QuizSettingsComponent },
+  { path: 'browser', component: QuizBrowserComponent },
   { path: '**', redirectTo: 'login' }
 ];
 
