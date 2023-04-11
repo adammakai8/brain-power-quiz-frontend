@@ -36,7 +36,7 @@ import { ThemeUpdateComponent } from './pages/admin/theme/theme-update.component
     QuizSettingsComponent,
     GameComponent,
     RegisterComponent,
-    QuizBrowserComponent
+    QuizBrowserComponent,
     RegisterComponent,
     ThemeComponent,
     ThemeCreateComponent,
