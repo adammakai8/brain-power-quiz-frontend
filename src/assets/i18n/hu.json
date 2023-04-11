@@ -36,5 +36,26 @@
       }
     },
     "create": "Játék létrehozása"
+  },
+  "admin": {
+    "navbar": {
+      "theme": "Téma",
+      "question": "Kérdés",
+      "forum": "Fórum"
+    },
+    "create": {
+      "new": " létrehozása",
+      "update": " módosítása"
+    },
+    "id": "#",
+    "empty": "Ez a tartalom jelenleg üres!",
+    "themes": {
+      "text": "Cím"
+    },
+    "buttons": {
+      "create": "Új elem hozzáadása",
+      "edit": "Szerkeszt",
+      "delete": "Töröl"
+    }
   }
 }

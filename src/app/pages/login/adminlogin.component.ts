@@ -4,14 +4,14 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-adminlogin',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class AdminLoginComponent implements OnInit {
 
   form: FormGroup;
-  isAdmin=false;
+  isAdmin=true;
 
   constructor(
     private fb: FormBuilder,
@@ -30,15 +30,12 @@ export class LoginComponent implements OnInit {
   login(): void {
     if (this.form.valid) {
       this.service.login(this.form.value)
-        .subscribe(() => this.router.navigate(['home']));
+        .subscribe(() => this.router.navigate(['theme']));
     } else {
       console.log('invalid form');
       
     }
   }
 
-  navigateToRegister(): void {
-    this.router.navigate(['register']);
-  }
-
+  navigateToRegister(): void {}
 }

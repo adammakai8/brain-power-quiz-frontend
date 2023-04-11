@@ -1,0 +1,21 @@
+<app-adminnavbar></app-adminnavbar>
+<div class="h-100 d-flex justify-content-center">
+    <div class="w-25">
+        <h3 class="text-center mb-3">
+            <div *ngIf="isCreate">{{ 'admin.navbar.theme' | translate }} {{ 'admin.create.new' | translate }}</div>
+            <div *ngIf="!isCreate">{{ 'admin.navbar.theme' | translate }} {{ 'admin.create.update' | translate }}</div>
+        </h3>
+        <form [formGroup]="form">
+            <div class="form-outline mb-4">
+                <label class="form-label" for="text">{{ 'admin.themes.text' | translate }}</label>
+                <input type="text" id="text" class="form-control" formControlName="text" [(ngModel)]="theme.text"/>
+            </div>
+            <div class="d-flex justify-content-between">
+                <button type="button" class="btn btn-primary" (click)="update()">
+                    <div *ngIf="isCreate">{{ 'admin.buttons.create' | translate }}</div>
+                    <div *ngIf="!isCreate">{{ 'admin.buttons.edit' | translate }}</div>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
