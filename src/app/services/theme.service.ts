@@ -19,6 +19,10 @@ export class ThemeService {
     return this.http.get<Theme>(this.url + '/' + _id);
   }
 
+  getThemeByText(text: string): Observable<Theme> {
+    return this.http.get<Theme>(this.url + '/name/' + text);
+  }
+
   createTheme(theme: Theme) {
     return this.http.post<Theme>(this.url + '/create', theme);
   }

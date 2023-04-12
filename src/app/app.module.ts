@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,12 +20,16 @@ import { AuthService } from './services/auth.service';
 import { ThemeService } from './services/theme.service';
 import { QuizBrowserComponent } from './pages/quiz-browser/quiz-browser.component';
 import { AdminLoginComponent } from './pages/login/adminlogin.component';
-import { ThemeComponent } from './pages/admin/theme/theme.component';
 import { ThemeCreateComponent } from './pages/admin/theme/theme-create.component';
 import { AdminnavbarComponent } from './pages/admin/adminnavbar/adminnavbar.component';
-import { QuestionComponent } from './pages/admin/question/question.component';
 import { TokenInterceptor } from './services/api-interceptor.service';
 import { ThemeUpdateComponent } from './pages/admin/theme/theme-update.component';
+import { EntityListerComponent } from './pages/admin/entity-lister/entity-lister.component';
+import { QuestionCreateComponent } from './pages/admin/question/question-create.component';
+import { QuestionUpdateComponent } from './pages/admin/question/question-update.component';
+import { QuestionService } from './services/question.service';
+
+export let AppInjector: Injector;
 
 @NgModule({
   declarations: [
@@ -38,11 +42,12 @@ import { ThemeUpdateComponent } from './pages/admin/theme/theme-update.component
     RegisterComponent,
     QuizBrowserComponent,
     RegisterComponent,
-    ThemeComponent,
     ThemeCreateComponent,
     ThemeUpdateComponent,
     AdminnavbarComponent,
-    QuestionComponent,
+    EntityListerComponent,
+    QuestionCreateComponent,
+    QuestionUpdateComponent
   ],
   imports: [
     BrowserModule,
@@ -66,11 +71,17 @@ import { ThemeUpdateComponent } from './pages/admin/theme/theme-update.component
   providers: [
     AuthService,
     ThemeService,
+    QuestionService,
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+
+export class AppModule {
+  constructor(private injector: Injector) {
+    AppInjector = this.injector;
+  }
+}
 
 // required for AOT compilation
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {

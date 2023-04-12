@@ -7,7 +7,7 @@ import { Theme } from 'src/app/model/theme';
 @Component({
   selector: 'app-theme-create',
   templateUrl: './theme-modify.html',
-  styleUrls: ['./theme.component.scss']
+  styleUrls: []
 })
 export class ThemeCreateComponent implements OnInit {
 

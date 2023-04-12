@@ -67,6 +67,12 @@
     "themes": {
       "text": "Cím"
     },
+    "questions": {
+      "text": "Kérdés",
+      "difficulty": "Nehézség",
+      "answer": "Válasz",
+      "themes": "Témák"
+    },
     "buttons": {
       "create": "Új elem hozzáadása",
       "edit": "Szerkeszt",

@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-theme-update',
   templateUrl: './theme-modify.html',
-  styleUrls: ['./theme.component.scss']
+  styleUrls: []
 })
 export class ThemeUpdateComponent implements OnInit {
 
@@ -29,13 +29,12 @@ export class ThemeUpdateComponent implements OnInit {
     ngOnInit(): void {
         const id = this.route.snapshot.paramMap.get('id')!;
   
-        this.service.getThemeByID(id).subscribe((theme) => this.theme = new Theme(theme));
+        this.service.getThemeByID(id).subscribe((theme) => this.theme = theme);
     }
 
     update() {
       if (this.form.valid) {
         this.theme.text = this.form.value.text;
-        console.log(this.theme);
         this.service.updateTheme(this.theme)
           .subscribe({
             next: () => this.router.navigate(['/theme']),
@@ -43,7 +42,6 @@ export class ThemeUpdateComponent implements OnInit {
           });
       } else {
         console.log('invalid form');
-        
       }
     }
 
