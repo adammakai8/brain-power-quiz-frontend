@@ -8,7 +8,7 @@
         </div>
         <button type="button" class="btn btn-success btn-lg m-1" (click)="createNewGame()">{{ 'quiz-browser.new-game' | translate }}</button>
     </div>
-    <form NgbCollapse [ngbCollapse]="isCollapsed" [ngClass]="{ 'd-none': isCollapsed }" class="d-flex flex-row mt-3" [formGroup]="form">
+    <form NgbCollapse [ngbCollapse]="isCollapsed" [ngClass]="{ 'd-none': isCollapsed }" class="d-flex flex-row mt-3 user-select-none" [formGroup]="form">
         <div class="col-4 me-1 d-flex flex-column">
             <label class="form-label h5">{{ 'quiz-browser.filters.category' | translate }}</label>
             <div class="overflow-auto flex-fill border p-2 white-bg">
@@ -46,7 +46,7 @@
                     <div class="input-group">
                         <input
                             class="form-control"
-                            placeholder="yyyy-mm-dd"
+                            placeholder="éééé-hh-nn"
                             name="dpFrom"
                             outsideDays="hidden"
                             formControlName="fromDate"
@@ -54,7 +54,7 @@
                         />
                         <input
                             class="form-control"
-                            placeholder="yyyy-mm-dd"
+                            placeholder="éééé-hh-nn"
                             name="dpTo"
                             outsideDays="hidden"
                             formControlName="toDate"

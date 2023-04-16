@@ -12,7 +12,11 @@
             </div>
             <div class="col-4">
                 <label for="closedate" class="form-label">{{ 'quiz-settings.close-date' | translate }}</label>
-                <input type="date" class="form-control" id="closedate" formControlName="closeDate">
+                <div class="input-group">
+                    <input class="form-control" id="closedate" 
+                        formControlName="closeDate" placeholder="éééé-hh-nn" ngbDatepicker #d="ngbDatepicker">
+                    <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"></button>
+                </div>
             </div>
         </div>
         <div class="row flex-fill mt-3 mb-5">
@@ -72,7 +76,7 @@
                     </ul>
                 </div>
                 <div class="d-flex flex-fill justify-content-end mt-3">
-                    <button type="button" class="btn btn-primary btn-lg m-1" (click)="createGame()">{{ 'quiz-settings.create' | translate }}</button>
+                    <button type="button" class="btn btn-primary btn-lg m-1" [disabled]="form.invalid" (click)="createGame()">{{ 'quiz-settings.create' | translate }}</button>
                 </div>
             </div>
         </div>

@@ -11,14 +11,21 @@ enum Difficulty {
   CUSTOM = 'CUSTOM'
 }
 
-function sumQuestionsValid(control: AbstractControl): ValidationErrors {
+function sumQuestionsValid(control: AbstractControl): ValidationErrors | null {
   if (control.parent?.get('easyQuestions')?.value +
     control.parent?.get('mediumQuestions')?.value +
-    control.parent?.get('hardQuestions')?.value < 10) {     
+    control.parent?.get('hardQuestions')?.value !== 10) {     
       return { invalid: true };
     } else {
-      return {};
+      return null;
     }
+}
+
+function themesNotEmpty(control: AbstractControl): ValidationErrors | null {
+  if (!control.value || control.value.length === 0) {
+    return { required: true };
+  }
+  return null;
 }
 
 @Component({
@@ -39,7 +46,7 @@ export class QuizSettingsComponent implements OnInit {
     this.form = fb.group({
       maximalPlayerNumber: new FormControl(5, [Validators.max(10), Validators.min(1)]),
       closeDate: new FormControl(moment().format('YYYY. MM. DD.'), [Validators.required]),
-      themes: new FormControl([], Validators.minLength(1)),
+      themes: new FormControl([], [themesNotEmpty]),
       easyQuestions: new FormControl(3, [Validators.max(10), sumQuestionsValid]),
       mediumQuestions: new FormControl(7, [Validators.max(10), sumQuestionsValid]),
       hardQuestions: new FormControl(0, [Validators.max(10), sumQuestionsValid])
@@ -54,6 +61,10 @@ export class QuizSettingsComponent implements OnInit {
   }
 
   createGame(): void {
+    if (this.form.valid) {
+      const formValue = this.form.value;
+      //formValue.closeDate = formValue.closeDate
+    }
     // TODO: implement game creation
   }
 
@@ -64,6 +75,7 @@ export class QuizSettingsComponent implements OnInit {
     } else {
       this.form.value.themes.push(theme);
     }
+    this.form.controls['themes'].updateValueAndValidity();
   }
 
   setDifficulty(event: any): void {
