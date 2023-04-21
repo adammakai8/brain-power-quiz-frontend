@@ -11,20 +11,22 @@ import { ThemeUpdateComponent } from './pages/admin/theme/theme-update.component
 import { EntityListerComponent } from './pages/admin/entity-lister/entity-lister.component';
 import { QuestionCreateComponent } from './pages/admin/question/question-create.component';
 import { QuestionUpdateComponent } from './pages/admin/question/question-update.component';
+import { AuthGuard } from './authguard/authguard.guard';
+import { ReverseGuard } from './authguard/reverse.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'adminlogin', component: AdminLoginComponent },
-  { path: 'theme', component: EntityListerComponent },
-  { path: 'theme/create', component: ThemeCreateComponent },
-  { path: 'theme/update/:id', component: ThemeUpdateComponent },
-  { path: 'question', component: EntityListerComponent },
-  { path: 'question/create', component: QuestionCreateComponent },
-  { path: 'question/update/:id', component: QuestionUpdateComponent },
-  { path: 'newgame', component: QuizSettingsComponent },
-  { path: 'browser', component: QuizBrowserComponent },
+  { path: 'theme', component: EntityListerComponent, canActivate: [AuthGuard] },
+  { path: 'theme/create', component: ThemeCreateComponent, canActivate: [AuthGuard] },
+  { path: 'theme/update/:id', component: ThemeUpdateComponent, canActivate: [AuthGuard] },
+  { path: 'question', component: EntityListerComponent, canActivate: [AuthGuard] },
+  { path: 'question/create', component: QuestionCreateComponent, canActivate: [AuthGuard] },
+  { path: 'question/update/:id', component: QuestionUpdateComponent, canActivate: [AuthGuard] },
+  { path: 'newgame', component: QuizSettingsComponent, canActivate: [AuthGuard] },
+  { path: 'browser', component: QuizBrowserComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'login' }
 ];
 

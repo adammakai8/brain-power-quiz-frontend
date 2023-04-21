@@ -4,6 +4,8 @@ import { Question } from 'src/app/model/question';
 import { QuestionService } from 'src/app/services/question.service';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Theme } from 'src/app/model/theme';
+import { ThemeService } from 'src/app/services/theme.service';
+import { Answer } from 'src/app/model/answer';
 
 @Component({
   selector: 'app-question-update',
@@ -12,6 +14,8 @@ import { Theme } from 'src/app/model/theme';
 })
 export class QuestionUpdateComponent implements OnInit {
 
+    currentThemeNames: string[] = [];
+    correctAnswerIndex: number = 0;
     isCreate = false;
     question: Question = new Question();
     themes: Theme[] = [];
@@ -21,7 +25,8 @@ export class QuestionUpdateComponent implements OnInit {
       private fb: FormBuilder,
       private route: ActivatedRoute,
       private router: Router,
-      private service: QuestionService
+      private themeService: ThemeService,
+      private questionService: QuestionService
     ) {
       this.form = this.fb.group({
         text: ['', Validators.required],
@@ -30,7 +35,7 @@ export class QuestionUpdateComponent implements OnInit {
         answer2: ['', Validators.required],
         answer3: ['', Validators.required],
         answer4: ['', Validators.required],
-        checkAnswer: ['answer1', [Validators.required]],
+        checkAnswer: [this.correctAnswerIndex.toString(), [Validators.required]],
         checkThemes: fb.array([], [Validators.required, Validators.minLength(1)])
       });
     }
@@ -38,7 +43,12 @@ export class QuestionUpdateComponent implements OnInit {
     ngOnInit(): void {
         const id = this.route.snapshot.paramMap.get('id')!;
   
-        this.service.getQuestionByID(id).subscribe((question) => this.question = question);
+        this.themeService.getThemes().subscribe((themes) => this.themes = themes);
+        this.questionService.getQuestionByID(id).subscribe((question) => {
+          this.question = question;
+          this.correctAnswerIndex = this.question.answers.indexOf(this.question.answers.filter((answer) => answer.isCorrect)[0]);
+          this.currentThemeNames = this.question.themes!.map((theme) => theme.text);
+        });
     }
 
     onCheckboxChange(e: any) {
@@ -60,7 +70,7 @@ export class QuestionUpdateComponent implements OnInit {
     update() {
       if (this.form.valid) {
         this.question = new Question(this.form.value);
-        this.service.updateQuestion(this.question)
+        this.questionService.updateQuestion(this.question)
           .subscribe({
             next: () => this.router.navigate(['/question']),
             error: (error) => console.error(error)

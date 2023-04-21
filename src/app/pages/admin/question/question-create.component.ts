@@ -13,6 +13,8 @@ import { ThemeService } from 'src/app/services/theme.service';
 })
 export class QuestionCreateComponent implements OnInit {
 
+    currentThemeNames: string[] = [];
+    correctAnswerIndex: number = 0;
     isCreate = true;
     question: Question = new Question();
     themes: Theme[] = [];
@@ -31,7 +33,7 @@ export class QuestionCreateComponent implements OnInit {
         answer2: ['', Validators.required],
         answer3: ['', Validators.required],
         answer4: ['', Validators.required],
-        checkAnswer: ['answer1', [Validators.required]],
+        checkAnswer: [this.correctAnswerIndex.toString(), [Validators.required]],
         checkThemes: fb.array([], [Validators.required, Validators.minLength(1)])
       });
     }
