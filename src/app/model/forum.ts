@@ -3,7 +3,7 @@ import { User } from "./user";
 
 export class Forum {
     _id?: string;
-    text!: string;
+    question!: string;
     author!: User;
     comments?: ForumComment[];
 }

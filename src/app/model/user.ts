@@ -3,7 +3,7 @@ import { ForumComment } from "./forumcomment";
 
 export class User {
     _id?: string;
-    name!: string;
+    username!: string;
     email!: string;
     birthYear!: number;
     password!: string;

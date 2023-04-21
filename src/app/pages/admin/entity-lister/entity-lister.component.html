@@ -19,9 +19,16 @@
             <tbody>
                 <tr *ngFor="let entity of currentEntities;">
                     <td class="pt-3">{{entities.indexOf(entity) + 1}}</td>
-                    <td class="pt-3 w-100">{{entity.text}}</td>
-                    <td *ngIf="mode === 'forum'">
-                        {{entity.author}}
+                    <td class="pt-3 w-100">
+                        <div *ngIf="mode !== 'forum'">
+                            {{entity.text}}
+                        </div>
+                        <div *ngIf="mode === 'forum'">
+                            {{entity.question}}
+                        </div>
+                    </td>
+                    <td *ngIf="mode === 'forum'" class="align-middle">
+                        {{entity.author.username}}
                     </td>
                     <td *ngIf="mode !== 'forum'" class="text-right">
                         <a [routerLink]="['/' + mode + '/update/' + entity._id]" class="btn btn-warning">{{ 'admin.buttons.edit' | translate}}</a>
