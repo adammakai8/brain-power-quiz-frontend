@@ -10,8 +10,9 @@ export class Question {
     themes?: Theme[];
     games?: Game[];
 
-    constructor(formData: {text: string, difficulty: number, answer1: string, answer2: string, answer3: string, answer4: string, checkAnswer: number, checkThemes: Theme[]}
+    constructor(_id: string | null = null, formData: {text: string, difficulty: number, answer1: string, answer2: string, answer3: string, answer4: string, checkAnswer: number, checkThemes: Theme[]}
         = {text: "", difficulty: 1, answer1: "", answer2: "", answer3: "", answer4: "", checkAnswer: 0, checkThemes: []}) {
+        if(_id !== null) this._id = _id;
         this.text = formData.text;
         this.difficulty = formData.difficulty;
         this.answers = [

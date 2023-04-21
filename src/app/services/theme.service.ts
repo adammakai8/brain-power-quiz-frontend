@@ -11,7 +11,7 @@ export class ThemeService {
 
   url = environment.backendUrl + '/themes';
 
-  getThemes(): Observable<Theme[]> {
+  getAll(): Observable<Theme[]> {
     return this.http.get<Theme[]>(this.url);
   }
 
@@ -31,7 +31,7 @@ export class ThemeService {
     return this.http.put<Theme>(this.url + '/update', theme);
   }
 
-  deleteTheme(_id: any) {
+  delete(_id: any) {
     return this.http.delete<any>(this.url + '/delete/' + _id);
   }
 }

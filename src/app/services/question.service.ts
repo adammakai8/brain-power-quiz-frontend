@@ -13,7 +13,7 @@ export class QuestionService {
 
   private url = environment.backendUrl + '/questions';
 
-  getQuestions(): Observable<Question[]> {
+  getAll(): Observable<Question[]> {
     return this.http.get<Question[]>(this.url);
   }
 
@@ -30,7 +30,7 @@ export class QuestionService {
     return this.http.put<Question>(this.url + '/update', question);
   }
 
-  deleteQuestion(_id: any) {
+  delete(_id: any) {
     return this.http.delete<any>(this.url + '/delete/' + _id);
   }
 }
