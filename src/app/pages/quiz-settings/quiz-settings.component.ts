@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import * as moment from 'moment';
 import { Theme } from 'src/app/model/theme';
+import { GameService } from 'src/app/services/game.service';
 import { ThemeService } from 'src/app/services/theme.service';
+import * as _ from "lodash";
 
 enum Difficulty {
   EASY = 'EASY',
@@ -12,9 +16,13 @@ enum Difficulty {
 }
 
 function sumQuestionsValid(control: AbstractControl): ValidationErrors | null {
+  console.log(`${control.parent?.get('easyQuestions')?.value}-${control.parent?.get('mediumQuestions')?.value}-${control.parent?.get('hardQuestions')?.value}-${control.parent?.get('easyQuestions')?.value +
+  control.parent?.get('mediumQuestions')?.value +
+  control.parent?.get('hardQuestions')?.value}`);
+  
   if (control.parent?.get('easyQuestions')?.value +
     control.parent?.get('mediumQuestions')?.value +
-    control.parent?.get('hardQuestions')?.value !== 10) {     
+    control.parent?.get('hardQuestions')?.value !== 10) {
       return { invalid: true };
     } else {
       return null;
@@ -35,37 +43,49 @@ function themesNotEmpty(control: AbstractControl): ValidationErrors | null {
 })
 export class QuizSettingsComponent implements OnInit {
 
+  @ViewChild('customOption')
+  cutomOptionRadio!: ElementRef;
+
+  minDate: NgbDateStruct;
+
   form: FormGroup;
 
   themes?: Theme[];
 
   constructor(
     private fb: FormBuilder,
-    private themeService: ThemeService
+    private themeService: ThemeService,
+    private gameService: GameService,
+    private router: Router
   ) {
     this.form = fb.group({
+      name: new FormControl('', [Validators.required]),
       maximalPlayerNumber: new FormControl(5, [Validators.max(10), Validators.min(1)]),
       closeDate: new FormControl(moment().format('YYYY. MM. DD.'), [Validators.required]),
       themes: new FormControl([], [themesNotEmpty]),
-      easyQuestions: new FormControl(3, [Validators.max(10), sumQuestionsValid]),
-      mediumQuestions: new FormControl(7, [Validators.max(10), sumQuestionsValid]),
-      hardQuestions: new FormControl(0, [Validators.max(10), sumQuestionsValid])
+      easyQuestions: new FormControl(3, [Validators.max(7), sumQuestionsValid]),
+      mediumQuestions: new FormControl(7, [Validators.max(7), sumQuestionsValid]),
+      hardQuestions: new FormControl(0, [Validators.max(7), sumQuestionsValid]),
     });
+    const currentDay = new Date();
+    this.minDate = { year: currentDay.getFullYear(), month: currentDay.getMonth() + 1, day: currentDay.getDate() };
    }
 
   ngOnInit(): void {
     this.themeService.getThemes().subscribe(
       themes => this.themes = themes
     );
-    this.disableNumberInputs();
   }
 
   createGame(): void {
+    console.log(this.form);
     if (this.form.valid) {
-      const formValue = this.form.value;
-      //formValue.closeDate = formValue.closeDate
+      const formValue = _.cloneDeep(this.form.value);
+      console.log(formValue);
+      formValue.closeDate = 
+      `${formValue.closeDate.year}-${formValue.closeDate.month < 10 ? '0' : ''}${formValue.closeDate.month}-${formValue.closeDate.day}`
+      this.gameService.createGame(formValue).subscribe(() => this.router.navigate(['game-browser']));
     }
-    // TODO: implement game creation
   }
 
   toggleThemeSelection(theme: Theme): void {
@@ -84,33 +104,27 @@ export class QuizSettingsComponent implements OnInit {
         this.form.get('easyQuestions')?.setValue(7);
         this.form.get('mediumQuestions')?.setValue(3);
         this.form.get('hardQuestions')?.setValue(0);
-
-        this.disableNumberInputs();
         break;
       case Difficulty.MEDIUM:
         this.form.get('easyQuestions')?.setValue(2);
         this.form.get('mediumQuestions')?.setValue(6);
         this.form.get('hardQuestions')?.setValue(2);
-
-        this.disableNumberInputs();
         break;
       case Difficulty.HARD:
         this.form.get('easyQuestions')?.setValue(0);
         this.form.get('mediumQuestions')?.setValue(3);
         this.form.get('hardQuestions')?.setValue(7);
-
-        this.disableNumberInputs();
         break;
-      case Difficulty.CUSTOM:
-        this.form.get('easyQuestions')?.enable();
-        this.form.get('mediumQuestions')?.enable();
-        this.form.get('hardQuestions')?.enable();
     }
+    this.form.get('easyQuestions')?.updateValueAndValidity();
+    this.form.get('mediumQuestions')?.updateValueAndValidity();
+    this.form.get('hardQuestions')?.updateValueAndValidity();
   }
 
-  private disableNumberInputs(): void {
-    this.form.get('easyQuestions')?.disable();
-    this.form.get('mediumQuestions')?.disable();
-    this.form.get('hardQuestions')?.disable();
+  handleInputChange(): void {
+    this.cutomOptionRadio.nativeElement.checked = true;
+    this.form.get('easyQuestions')?.updateValueAndValidity();
+    this.form.get('mediumQuestions')?.updateValueAndValidity();
+    this.form.get('hardQuestions')?.updateValueAndValidity();
   }
 }

@@ -5,15 +5,15 @@
     <form class="flex-fill d-flex flex-column mt-5" [formGroup]="form">
         <div class="row">
             <div class="col-8">
-                <label for="maxplayers" class="form-label">
-                    {{ 'quiz-settings.max-players' | translate: { 'count': form.value.maximalPlayerNumber } }}
-                </label>
-                <input type="range" class="form-range" min="1" max="10" step="1" id="maxplayers" formControlName="maximalPlayerNumber">
+                <div class="form-outline mb-2">
+                    <label class="form-label h5" for="quizname">{{ 'quiz-browser.filters.name' | translate }}</label>
+                    <input type="text" id="quizname" class="form-control" formControlName="name" />
+                </div>
             </div>
             <div class="col-4">
                 <label for="closedate" class="form-label">{{ 'quiz-settings.close-date' | translate }}</label>
                 <div class="input-group">
-                    <input class="form-control" id="closedate" 
+                    <input class="form-control" id="closedate" [minDate]="minDate"
                         formControlName="closeDate" placeholder="éééé-hh-nn" ngbDatepicker #d="ngbDatepicker">
                     <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"></button>
                 </div>
@@ -32,6 +32,10 @@
                 </div>
             </div>
             <div class="col-8 p-3">
+                <label for="maxplayers" class="form-label fw-bold">
+                    {{ 'quiz-settings.max-players' | translate: { 'count': form.value.maximalPlayerNumber } }}
+                </label>
+                <input type="range" class="form-range" min="1" max="10" step="1" id="maxplayers" formControlName="maximalPlayerNumber">
                 <h3>{{ 'quiz-settings.diffculty.diffculty' | translate }}</h3>
                 <div class="flex-fill border p-2 white-bg">
                     <ul class="list-group border-0">
@@ -54,22 +58,22 @@
                             </label>
                         </li>
                         <li class="list-group-item border-0">
-                            <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="CUSTOM" id="custom-option" (change)="setDifficulty($event)">
+                            <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="CUSTOM" id="custom-option" #customOption (change)="setDifficulty($event)">
                             <label class="form-check-label" for="custom-option">
                                 {{ 'quiz-settings.diffculty.options.custom.custom' | translate }}
                             </label>
                             <div class="row m-1">
                                 <div class="col">
                                     <label class="form-label ps-0" for="easy-custom">{{ 'quiz-settings.diffculty.options.custom.easy' | translate }}</label>
-                                    <input type="number" class="form-control me-1" max="10" min="0" value="" id="easy-custom" formControlName="easyQuestions">
+                                    <input type="number" class="form-control me-1" max="7" min="0" value="" id="easy-custom" formControlName="easyQuestions" (change)="handleInputChange()">
                                 </div>
                                 <div class="col">
                                     <label class="form-label ps-0" for="med-custom">{{ 'quiz-settings.diffculty.options.custom.medium' | translate }}</label>
-                                    <input type="number" class="form-control me-1" max="10" min="0" value="" id="med-custom" formControlName="mediumQuestions">
+                                    <input type="number" class="form-control me-1" max="7" min="0" value="" id="med-custom" formControlName="mediumQuestions" (change)="handleInputChange()">
                                 </div>
                                 <div class="col">
                                     <label class="form-label ps-0" for="hard-custom">{{ 'quiz-settings.diffculty.options.custom.hard' | translate }}</label>
-                                    <input type="number" class="form-control me-1" max="10" min="0" value="" id="hard-custom" formControlName="hardQuestions">
+                                    <input type="number" class="form-control me-1" max="7" min="0" value="" id="hard-custom" formControlName="hardQuestions" (change)="handleInputChange()">
                                 </div>
                             </div>
                         </li>

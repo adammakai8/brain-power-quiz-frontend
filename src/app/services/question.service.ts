@@ -11,7 +11,7 @@ export class QuestionService {
 
   constructor(private http: HttpClient) { }
 
-  url = environment.backendUrl + '/questions';
+  private url = environment.backendUrl + '/questions';
 
   getQuestions(): Observable<Question[]> {
     return this.http.get<Question[]>(this.url);
