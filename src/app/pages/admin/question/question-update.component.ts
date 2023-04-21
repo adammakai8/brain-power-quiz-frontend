@@ -14,6 +14,7 @@ import { Answer } from 'src/app/model/answer';
 })
 export class QuestionUpdateComponent implements OnInit {
 
+    _id: string = "";
     currentThemeNames: string[] = [];
     correctAnswerIndex: number = 0;
     isCreate = false;
@@ -35,19 +36,25 @@ export class QuestionUpdateComponent implements OnInit {
         answer2: ['', Validators.required],
         answer3: ['', Validators.required],
         answer4: ['', Validators.required],
-        checkAnswer: [this.correctAnswerIndex.toString(), [Validators.required]],
+        checkAnswer: ['', [Validators.required]],
         checkThemes: fb.array([], [Validators.required, Validators.minLength(1)])
       });
     }
   
     ngOnInit(): void {
-        const id = this.route.snapshot.paramMap.get('id')!;
+        this._id = this.route.snapshot.paramMap.get('id')!;
+        const checkAnswer: FormArray = this.form.get('checkAnswer') as FormArray;
+        const checkThemes: FormArray = this.form.get('checkThemes') as FormArray;
   
-        this.themeService.getThemes().subscribe((themes) => this.themes = themes);
-        this.questionService.getQuestionByID(id).subscribe((question) => {
+        this.themeService.getAll().subscribe((themes) => this.themes = themes);
+        this.questionService.getQuestionByID(this._id).subscribe((question) => {
           this.question = question;
           this.correctAnswerIndex = this.question.answers.indexOf(this.question.answers.filter((answer) => answer.isCorrect)[0]);
+          checkAnswer.setValue([this.correctAnswerIndex]);
           this.currentThemeNames = this.question.themes!.map((theme) => theme.text);
+          this.currentThemeNames.forEach((themeName) => {
+            checkThemes.push(new FormControl(themeName));
+          });
         });
     }
 
@@ -69,7 +76,10 @@ export class QuestionUpdateComponent implements OnInit {
 
     update() {
       if (this.form.valid) {
-        this.question = new Question(this.form.value);
+        let form_value = this.form.value;
+        form_value.checkThemes = this.themes.filter(theme => form_value.checkThemes.includes(theme.text));
+        this.question = new Question(this._id, this.form.value);
+        console.log(this.question);
         this.questionService.updateQuestion(this.question)
           .subscribe({
             next: () => this.router.navigate(['/question']),

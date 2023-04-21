@@ -1,47 +1,50 @@
 <app-adminnavbar></app-adminnavbar>
 <div class="mt-6">
-    <div *ngIf="entities.length === 0" class="">
-        <h2 class="text-center"><i>{{ 'admin.empty' | translate}}</i></h2>
-    </div>
-    <table *ngIf="entities.length !== 0" class="table table-dark table-striped table-responsive w-50 m-auto">
-        <thead>
-            <tr>
-                <th scope="col" class="text-center">{{ 'admin.id' | translate}}</th>
-                <th scope="col" class="text-left">{{ 'admin.themes.text' | translate}}</th>
-                <th scope="col" class="text-center">{{ 'admin.buttons.edit' | translate}}</th>
-                <th scope="col" class="text-center">{{ 'admin.buttons.delete' | translate}}</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let entity of currentEntities;">
-                <td class="pt-3">{{entities.indexOf(entity) + 1}}</td>
-                <td class="pt-3 w-100">{{entity.text}}</td>
-                <td class="text-right">
-                    <a [routerLink]="['/' + mode + '/update/' + entity._id]" class="btn btn-warning">{{ 'admin.buttons.edit' | translate}}</a>
-                </td>
-                <td>
-                    <button type="button" (click)="deleteEntity(entity._id)" class="btn btn-danger">{{ 'admin.buttons.delete' | translate}}</button>
-                </td>
-            </tr> 
-        </tbody>
-        <tfoot>
-            <tr>
-                <td></td>
-                <td></td>
-                <td>
-                    <div class="text-end">
-                        <button type="button" (click)="changeCurrentEntities(-1)" class="btn btn-secondary">&lt;&lt;</button>
-                    </div>
-                </td>
-                <td>
-                    <div class="text-start">
-                        <button type="button" (click)="changeCurrentEntities(1)" class="btn btn-secondary">&gt;&gt;</button>
-                    </div>
-                </td>
-            </tr>
-        </tfoot>
-    </table>
-    <div class="fixed-bottom mb-3 text-center">
-        <a [routerLink]="['/' + mode + '/create']" class="btn btn-primary">{{ 'admin.buttons.create' | translate}}</a>
+    <div *ngIf="isLoading | async">
+        <div *ngIf="entities.length === 0">
+            <h2 class="text-center"><i>{{ 'admin.empty' | translate}}</i></h2>
+        </div>
+        <table *ngIf="entities.length !== 0" class="table table-dark table-striped table-responsive w-50 m-auto">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center">{{ 'admin.id' | translate}}</th>
+                    <th scope="col" class="text-left">{{ 'admin.themes.text' | translate}}</th>
+                    <th scope="col" class="text-center">
+                        <div *ngIf="mode !== 'forum'">{{ 'admin.buttons.edit' | translate}}</div>
+                        <div *ngIf="mode === 'forum'">{{ 'admin.forums.author' | translate}}</div>
+                    </th>
+                    <th scope="col" class="text-center">{{ 'admin.buttons.delete' | translate}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let entity of currentEntities;">
+                    <td class="pt-3">{{entities.indexOf(entity) + 1}}</td>
+                    <td class="pt-3 w-100">{{entity.text}}</td>
+                    <td *ngIf="mode === 'forum'">
+                        {{entity.author}}
+                    </td>
+                    <td *ngIf="mode !== 'forum'" class="text-right">
+                        <a [routerLink]="['/' + mode + '/update/' + entity._id]" class="btn btn-warning">{{ 'admin.buttons.edit' | translate}}</a>
+                    </td>
+                    <td>
+                        <button type="button" (click)="deleteEntity(entity._id)" class="btn btn-danger">{{ 'admin.buttons.delete' | translate}}</button>
+                    </td>
+                </tr> 
+            </tbody>
+        </table>
+        <div *ngIf="entities.length !== 0" class="d-flex justify-content-center">
+            <div class="m-1">
+                <button type="button" (click)="changeCurrentEntities(-1)" class="d-inline float-start btn btn-secondary">&lt;&lt;</button>
+            </div>
+            <div class="m-1">
+                <button type="button" (click)="changeCurrentEntities(1)" class="d-inline float-end btn btn-secondary">&gt;&gt;</button>
+            </div>
+            <div class="m-1">
+                <button type="button" (click)="changeCurrentEntities(2)" class="d-inline float-end btn btn-secondary">&gt;&gt;&gt;</button>
+            </div>
+        </div>
+        <div *ngIf="mode !== 'forum'" class="fixed-bottom mb-3 text-center">
+            <a [routerLink]="['/' + mode + '/create']" class="btn btn-primary">{{ 'admin.buttons.create' | translate}}</a>
+        </div>
     </div>
 </div>

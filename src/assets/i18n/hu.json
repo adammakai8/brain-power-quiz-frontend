@@ -73,6 +73,9 @@
       "answer": "Válasz",
       "themes": "Témák"
     },
+    "forums": {
+      "author": "Szerkesztő"
+    },
     "buttons": {
       "create": "Új elem hozzáadása",
       "edit": "Szerkeszt",

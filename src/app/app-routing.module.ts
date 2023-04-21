@@ -25,6 +25,7 @@ const routes: Routes = [
   { path: 'question', component: EntityListerComponent, canActivate: [AuthGuard] },
   { path: 'question/create', component: QuestionCreateComponent, canActivate: [AuthGuard] },
   { path: 'question/update/:id', component: QuestionUpdateComponent, canActivate: [AuthGuard] },
+  { path: 'forum', component: EntityListerComponent, canActivate: [AuthGuard] },
   { path: 'newgame', component: QuizSettingsComponent, canActivate: [AuthGuard] },
   { path: 'browser', component: QuizBrowserComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'login' }

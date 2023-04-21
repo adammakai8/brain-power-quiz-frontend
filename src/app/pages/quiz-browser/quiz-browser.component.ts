@@ -38,7 +38,7 @@ export class QuizBrowserComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.themeService.getThemes().subscribe(themes => this.themes = themes);
+    this.themeService.getAll().subscribe(themes => this.themes = themes);
   }
 
   toggleThemeSelection(theme: Theme): void {

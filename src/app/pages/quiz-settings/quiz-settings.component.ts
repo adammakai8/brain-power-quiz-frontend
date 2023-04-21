@@ -54,7 +54,7 @@ export class QuizSettingsComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.themeService.getThemes().subscribe(
+    this.themeService.getAll().subscribe(
       themes => this.themes = themes
     );
     this.disableNumberInputs();
