@@ -9,5 +9,5 @@ export class Game {
     closeDate!: Date;
     themes?: Theme[];
     players?: User[];
-    question?: Question[];
+    questions?: Question[];
 }

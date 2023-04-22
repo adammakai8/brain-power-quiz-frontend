@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { NgbCalendar, NgbDate, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import * as moment from 'moment';
+import { Game } from 'src/app/model/game';
 import { Theme } from 'src/app/model/theme';
+import { GameService } from 'src/app/services/game.service';
 import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
@@ -18,14 +21,19 @@ export class QuizBrowserComponent implements OnInit {
 
   themes?: Theme[];
 
-  isCollapsed = false;
+  isCollapsed = true;
+
+  games?: Game[];
+
+  gamesFiltered?: Game[];
 
   constructor(
     private fb: FormBuilder,
     private calendar: NgbCalendar,
     public formatter: NgbDateParserFormatter,
     private router: Router,
-    private themeService: ThemeService
+    private themeService: ThemeService,
+    private gameService: GameService
   ) {
     this.form = fb.group({
       themes: new FormControl([]),
@@ -39,6 +47,10 @@ export class QuizBrowserComponent implements OnInit {
 
   ngOnInit(): void {
     this.themeService.getAll().subscribe(themes => this.themes = themes);
+    this.gameService.getAll().subscribe(games => {
+      this.games = games;
+      this.gamesFiltered = this.games;
+    });
   }
 
   toggleThemeSelection(theme: Theme): void {
@@ -89,7 +101,24 @@ export class QuizBrowserComponent implements OnInit {
 		);
 	}
 
+  getDateFormatted(date: Date): string {
+    return moment(date).format('YYYY. MM. DD.')
+  }
+
+  getThemeTooltip(themes?: Theme[]): string {
+    if (!themes || themes.length < 2) {
+      return '';
+    } else {
+      return themes.map(theme => theme.text).join(', ')
+    }
+  }
+
   search() {
+    // TODO implement search filtering
+  }
+
+  startGame(gameId: string): void {
+    this.gameService.startGame(gameId).subscribe(game => this.router.navigate(['game', game._id]));
   }
 
   createNewGame() {

@@ -13,6 +13,8 @@ import { QuestionCreateComponent } from './pages/admin/question/question-create.
 import { QuestionUpdateComponent } from './pages/admin/question/question-update.component';
 import { AuthGuard } from './authguard/authguard.guard';
 import { ReverseGuard } from './authguard/reverse.guard';
+import { GameComponent } from './pages/game/game.component';
+import { Game } from './model/game';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -28,6 +30,7 @@ const routes: Routes = [
   { path: 'forum', component: EntityListerComponent, canActivate: [AuthGuard] },
   { path: 'newgame', component: QuizSettingsComponent, canActivate: [AuthGuard] },
   { path: 'browser', component: QuizBrowserComponent, canActivate: [AuthGuard] },
+  { path: 'game/:id', component: GameComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'login' }
 ];
 

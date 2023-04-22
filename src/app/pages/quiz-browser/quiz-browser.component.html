@@ -2,89 +2,115 @@
     <div class="d-flex justify-content-between">
         <div class="d-flex flex-row align-items-baseline" role="button" (click)="isCollapsed = !isCollapsed" 
             [attr.aria-expanded]="!isCollapsed" aria-controls="collapseFilters">
-            <h1>{{ 'quiz-browser.title' | translate }}</h1>
+            <h1 class="user-select-none">{{ 'quiz-browser.title' | translate }}</h1>
             <span *ngIf="!isCollapsed" class="ms-2 h2 bi bi-chevron-down"></span>
             <span *ngIf="isCollapsed" class="ms-2 h2 bi bi-chevron-right"></span>
         </div>
         <button type="button" class="btn btn-success btn-lg m-1" (click)="createNewGame()">{{ 'quiz-browser.new-game' | translate }}</button>
     </div>
-    <form NgbCollapse [ngbCollapse]="isCollapsed" [ngClass]="{ 'd-none': isCollapsed }" class="d-flex flex-row mt-3 user-select-none" [formGroup]="form">
-        <div class="col-4 me-1 d-flex flex-column">
-            <label class="form-label h5">{{ 'quiz-browser.filters.category' | translate }}</label>
-            <div class="overflow-auto flex-fill border p-2 white-bg">
-                <ul class="list-group border-0">
-                    <li *ngFor="let theme of themes; let i = index">
-                        <input class="form-check-input me-1" type="checkbox" value="" id="{{ 'theme' + i }}" (click)="toggleThemeSelection(theme)">
-                        <label class="form-check-label" for="{{ 'theme' + i }}">{{ theme.text }}</label>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-8 ms-1 pe-2">
-            <div class="form-outline mb-2">
-                <label class="form-label h5" for="quizname">{{ 'quiz-browser.filters.name' | translate }}</label>
-                <input type="text" id="quizname" class="form-control" formControlName="name" />
-            </div>
-            <div>
-                <label class="h5">{{ 'quiz-browser.filters.maxplayers.title' | translate }}</label>
-                <div class="row">
-                    <div class="col-6 form-outline mb-2">
-                        <label class="form-label h6" for="playermin">{{ 'quiz-browser.filters.maxplayers.min' | translate }}</label>
-                        <input type="number" min="0" max="10" id="playermin" class="form-control" formControlName="playermin" />
-                    </div>
-                    <div class="col-6 form-outline mb-2">
-                        <label class="form-label h6" for="playermax">{{ 'quiz-browser.filters.maxplayers.max' | translate }}</label>
-                        <input type="number" min="0" max="10" id="playermax" class="form-control" formControlName="playermax" />
-                    </div>
+    <div NgbCollapse [ngbCollapse]="isCollapsed">
+        <form class="d-flex flex-row mt-3 user-select-none" [formGroup]="form">
+            <div class="col-4 me-1 d-flex flex-column">
+                <label class="form-label h5">{{ 'quiz-browser.filters.category' | translate }}</label>
+                <div class="overflow-auto flex-fill border p-2 white-bg">
+                    <ul class="list-group border-0">
+                        <li *ngFor="let theme of themes; let i = index">
+                            <input class="form-check-input me-1" type="checkbox" value="" id="{{ 'theme' + i }}" (click)="toggleThemeSelection(theme)">
+                            <label class="form-check-label" for="{{ 'theme' + i }}">{{ theme.text }}</label>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <div class="row">
-                <div class="d-flex flex-column">
-                    <label class="h5 me-2">
-                            {{ 'quiz-browser.filters.valid-date' | translate }}
-                    </label>
-                    <div class="input-group">
-                        <input
-                            class="form-control"
-                            placeholder="éééé-hh-nn"
-                            name="dpFrom"
-                            outsideDays="hidden"
-                            formControlName="fromDate"
-                            ngbDatepicker
-                        />
-                        <input
-                            class="form-control"
-                            placeholder="éééé-hh-nn"
-                            name="dpTo"
-                            outsideDays="hidden"
-                            formControlName="toDate"
-                            ngbDatepicker
-                        />
-                        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="datepicker.toggle()" type="button"></button>
-                    </div>
+            <div class="col-8 ms-1 pe-2">
+                <div class="form-outline mb-2">
+                    <label class="form-label h5" for="quizname">{{ 'quiz-browser.filters.name' | translate }}</label>
+                    <input type="text" id="quizname" class="form-control" formControlName="name" />
                 </div>
                 <div>
-                    <input
-                        name="datepicker"
-                        class="form-control visually-hidden-focusable"
-                        ngbDatepicker
-                        #datepicker="ngbDatepicker"
-                        [autoClose]="'outside'"
-                        (dateSelect)="onDateSelection($event)"
-                        [dayTemplate]="t"
-                        outsideDays="hidden"
-                        [startDate]="form.get('fromDate')!.value"
-                        tabindex="-1"
-                    />
+                    <label class="h5">{{ 'quiz-browser.filters.maxplayers.title' | translate }}</label>
+                    <div class="row">
+                        <div class="col-6 form-outline mb-2">
+                            <label class="form-label h6" for="playermin">{{ 'quiz-browser.filters.maxplayers.min' | translate }}</label>
+                            <input type="number" min="0" max="10" id="playermin" class="form-control" formControlName="playermin" />
+                        </div>
+                        <div class="col-6 form-outline mb-2">
+                            <label class="form-label h6" for="playermax">{{ 'quiz-browser.filters.maxplayers.max' | translate }}</label>
+                            <input type="number" min="0" max="10" id="playermax" class="form-control" formControlName="playermax" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="d-flex flex-column">
+                        <label class="h5 me-2">
+                                {{ 'quiz-browser.filters.valid-date' | translate }}
+                        </label>
+                        <div class="input-group">
+                            <input
+                                class="form-control"
+                                placeholder="éééé-hh-nn"
+                                name="dpFrom"
+                                outsideDays="hidden"
+                                formControlName="fromDate"
+                                ngbDatepicker
+                            />
+                            <input
+                                class="form-control"
+                                placeholder="éééé-hh-nn"
+                                name="dpTo"
+                                outsideDays="hidden"
+                                formControlName="toDate"
+                                ngbDatepicker
+                            />
+                            <button class="btn btn-outline-secondary bi bi-calendar3" (click)="datepicker.toggle()" type="button"></button>
+                        </div>
+                    </div>
+                    <div>
+                        <input
+                            name="datepicker"
+                            class="form-control visually-hidden-focusable"
+                            ngbDatepicker
+                            #datepicker="ngbDatepicker"
+                            [autoClose]="'outside'"
+                            (dateSelect)="onDateSelection($event)"
+                            [dayTemplate]="t"
+                            outsideDays="hidden"
+                            [startDate]="form.get('fromDate')!.value"
+                            tabindex="-1"
+                        />
+                    </div>
                 </div>
             </div>
+        </form>
+        <div class="d-flex justify-content-end mt-2">
+            <button type="button" class="btn btn-primary m-1" (click)="search()">{{ 'quiz-browser.filters.search' | translate }}</button>
         </div>
-    </form>
-    <div class="d-flex justify-content-end mt-2">
-        <button type="button" class="btn btn-primary m-1" (click)="search()">{{ 'quiz-browser.filters.search' | translate }}</button>
     </div>
     <div class="overflow-auto flex-fill border mt-2 mb-5 white-bg">
-        
+        <table class="table table-striped-columns">
+            <thead class="mt-2">
+              <th scope="col" class="text-center">{{ 'quiz-browser.list.header.name' | translate }}</th>
+              <th scope="col" class="text-center">{{ 'quiz-browser.list.header.themes' | translate }}</th>
+              <th scope="col" class="text-center">{{ 'quiz-browser.list.header.players' | translate }}</th>
+              <th scope="col" class="text-center">{{ 'quiz-browser.list.header.valid-date' | translate }}</th>
+              <th scope="col" class="text-center"></th>
+            </thead>
+            <tbody class="overflow-auto">
+                <tr *ngFor="let game of gamesFiltered">
+                    <td class="text-center align-middle">{{ game.name }}</td>
+                    <td class="text-center align-middle" ngbTooltip="{{ getThemeTooltip(game.themes) }}" container="body">
+                        {{ game.themes![0].text + (game.themes!.length > 1 ? ' ...' : '') }}
+                    </td>
+                    <td class="text-center align-middle">{{ (!game.players ? 0 : game.players.length) + ' / ' + game.maximalPlayerNumber }}</td>
+                    <td class="text-center align-middle">{{ getDateFormatted(game.closeDate) }}</td>
+                    <td class="text-center align-middle">
+                        <button type="button" class="btn btn-success" (click)="startGame(game._id!)">
+                            {{ 'quiz-browser.list.play' | translate }}
+                            <i class="bi bi-play"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 

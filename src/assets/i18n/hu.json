@@ -50,7 +50,24 @@
       },
       "valid-date": "Játék érvényes (-tól-ig)",
       "search": "Keresés"
+    },
+    "list": {
+      "header": {
+        "name": "Quiz neve",
+        "themes": "Témák",
+        "players": "Játékosok",
+        "valid-date": "Lejárat"
+      },
+      "play": "Játék"
     }
+  },
+  "game": {
+    "question-counter": "Kérdés {{count}} / {{max}}",
+    "next": "Következő kérdés",
+    "next-confirm": "A jelenlegi kérdését még nem válaszolta meg, így ha tovább lép, a jelenlegi válaszadása hibásnak minősül. Biztosan folytatja?",
+    "points": "Pontszám: {{points}}",
+    "quit-confirm": "A játékot még nem fejezte be. Ha kilép, a jelenlegi játékállása elvész. Biztosan kilép?",
+    "submit": "Befejezés"
   },
   "admin": {
     "navbar": {

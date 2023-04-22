@@ -16,10 +16,6 @@ enum Difficulty {
 }
 
 function sumQuestionsValid(control: AbstractControl): ValidationErrors | null {
-  console.log(`${control.parent?.get('easyQuestions')?.value}-${control.parent?.get('mediumQuestions')?.value}-${control.parent?.get('hardQuestions')?.value}-${control.parent?.get('easyQuestions')?.value +
-  control.parent?.get('mediumQuestions')?.value +
-  control.parent?.get('hardQuestions')?.value}`);
-  
   if (control.parent?.get('easyQuestions')?.value +
     control.parent?.get('mediumQuestions')?.value +
     control.parent?.get('hardQuestions')?.value !== 10) {
@@ -78,13 +74,12 @@ export class QuizSettingsComponent implements OnInit {
   }
 
   createGame(): void {
-    console.log(this.form);
     if (this.form.valid) {
       const formValue = _.cloneDeep(this.form.value);
       console.log(formValue);
       formValue.closeDate = 
       `${formValue.closeDate.year}-${formValue.closeDate.month < 10 ? '0' : ''}${formValue.closeDate.month}-${formValue.closeDate.day}`
-      this.gameService.createGame(formValue).subscribe(() => this.router.navigate(['game-browser']));
+      this.gameService.createGame(formValue).subscribe(() => this.router.navigate(['browser']));
     }
   }
 

@@ -1,1 +1,71 @@
-<p>game works!</p>
+<div class="h-100 m-5 mt-3 d-flex flex-column justify-content-center">
+    <div class="progress-container">
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped bg-info" role="progressbar" [style.width]="quizProgress"></div>
+        </div>
+        <div class="progress-text color-dark">
+            {{ counterText }}
+        </div>
+    </div>
+    <div class="d-flex justify-content-center mt-3 fs-5 fw-bold">
+        {{ 'game.points' | translate: { points: pointSum } }}
+        <span *ngIf="!wrongAnswer && lastPoint > 0" class="text-success">{{ ' + ' + lastPoint }}</span>
+    </div>
+    <div class="d-flex flex-column flex-fill" *ngIf="!!questions && questions.length > 0">
+        <div class="fs-1 m-3 mt-0 text-center">
+            {{ currentQuestion.text }}
+        </div>
+        <div class="mt-3 mb-5 d-flex flex-fill flex-column">
+            <div class="row flex-fill mb-3">
+                <div class="col d-flex">
+                    <button 
+                        type="button" 
+                        class="btn btn-primary btn-lg m-1 flex-fill fs-1"
+                        [ngClass]="{ 'btn-success': correctAnswer === currentQuestion.answers[0], 'btn-danger': wrongAnswer === currentQuestion.answers[0] }"
+                        (click)="chooseAnswer(currentQuestion.answers[0])">
+                        {{ currentQuestion.answers[0].text }}
+                    </button>
+                </div>
+                <div class="col d-flex">
+                    <button 
+                        type="button" 
+                        class="btn btn-primary btn-lg m-1 flex-fill fs-1"
+                        [ngClass]="{ 'btn-success': correctAnswer === currentQuestion.answers[1], 'btn-danger': wrongAnswer === currentQuestion.answers[1] }"
+                        (click)="chooseAnswer(currentQuestion.answers[1])">
+                        {{ currentQuestion.answers[1].text }}
+                    </button>
+                </div>
+            </div>
+            <div class="row flex-fill">
+                <div class="col d-flex">
+                    <button 
+                        type="button" 
+                        class="btn btn-primary btn-lg m-1 flex-fill fs-1"
+                        [ngClass]="{ 'btn-success': correctAnswer === currentQuestion.answers[2], 'btn-danger': wrongAnswer === currentQuestion.answers[2] }"
+                        (click)="chooseAnswer(currentQuestion.answers[2])">
+                        {{ currentQuestion.answers[2].text }}
+                    </button>
+                </div>
+                <div class="col d-flex">
+                    <button 
+                        type="button" 
+                        class="btn btn-primary btn-lg m-1 flex-fill fs-1"
+                        [ngClass]="{ 'btn-success': correctAnswer === currentQuestion.answers[3], 'btn-danger': wrongAnswer === currentQuestion.answers[3] }"
+                        (click)="chooseAnswer(currentQuestion.answers[3])">
+                        {{ currentQuestion.answers[3].text }}
+                    </button>
+                </div>
+            </div>
+            <div class="d-flex mt-2 justify-content-end">
+                <button 
+                    type="button" 
+                    class="btn m-1 fs-4"
+                    [ngClass]="{ 'btn-secondary': !correctAnswer, 'btn-info': !!correctAnswer }"
+                    (click)="nextQuestion()">
+                    {{ (isLastQuestion() ? 'game.submit' : 'game.next') | translate }}
+                    <i class="bi bi-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
