@@ -1,11 +1,12 @@
 import { Game } from "./game";
 import { Question } from "./question";
 import { Theme } from "./theme";
+import { User } from "./user";
 
-export class QuestionStatistic {
+export class AnswerData {
     _id?: string;
     point!: number;
-    question!: Question;
+    user?: User;
     game!: Game;
-    themes!: Theme[];
+    question!: Question;
 }

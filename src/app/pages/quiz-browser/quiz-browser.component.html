@@ -103,9 +103,13 @@
                     <td class="text-center align-middle">{{ (!game.players ? 0 : game.players.length) + ' / ' + game.maximalPlayerNumber }}</td>
                     <td class="text-center align-middle">{{ getDateFormatted(game.closeDate) }}</td>
                     <td class="text-center align-middle">
-                        <button type="button" class="btn btn-success" (click)="startGame(game._id!)">
+                        <button *ngIf="!isPlayed(game._id!) && !isGameClosed(game.closeDate)" type="button" class="btn btn-success" (click)="startGame(game)">
                             {{ 'quiz-browser.list.play' | translate }}
                             <i class="bi bi-play"></i>
+                        </button>
+                        <button *ngIf="isGameClosed(game.closeDate)" type="button" class="btn btn-info" (click)="''">
+                            {{ 'quiz-browser.list.results' | translate }}
+                            <i class="bi bi-trophy"></i>
                         </button>
                     </td>
                 </tr>

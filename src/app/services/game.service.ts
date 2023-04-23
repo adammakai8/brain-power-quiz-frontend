@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import { GameCreationData } from '../model/gamecreationdata';
 import { Observable } from 'rxjs';
 import { Game } from '../model/game';
-import { QuestionStatistic } from '../model/questionstatistic';
+import { AnswerData } from '../model/answerdata';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +23,11 @@ export class GameService {
     return this.http.post(this.url + '/create', gameData) as Observable<any>;
   }
 
-  submitAnswers(answers: QuestionStatistic[]): Observable<any> {
+  playedGameIds(): Observable<string[]> {
+    return this.http.get(this.url + `/played`) as Observable<string[]>;
+  }
+
+  submitAnswers(answers: AnswerData[]): Observable<any> {
     return this.http.post(this.url + '/submit', answers);
   }
 

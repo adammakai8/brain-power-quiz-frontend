@@ -7,7 +7,7 @@ import { Moment } from 'moment';
 import { Answer } from 'src/app/model/answer';
 import { Game } from 'src/app/model/game';
 import { Question } from 'src/app/model/question';
-import { QuestionStatistic } from 'src/app/model/questionstatistic';
+import { AnswerData } from 'src/app/model/answerdata';
 import { GameService } from 'src/app/services/game.service';
 
 @Component({
@@ -29,7 +29,7 @@ export class GameComponent implements OnInit {
   correctAnswer?: Answer;
   wrongAnswer?: Answer;
 
-  questionStatistics: QuestionStatistic[] = [];
+  questionStatistics: AnswerData[] = [];
 
   currentQuestionIndex: number = -1;
   get currentQuestion(): Question {
@@ -70,10 +70,9 @@ export class GameComponent implements OnInit {
     }
 
     this.questionStatistics.push({
-      game: this.game!,
       point: this.lastPoint,
-      question: this.currentQuestion,
-      themes: this.currentQuestion.themes!
+      game: this.game!,
+      question: this.currentQuestion
     });
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { NavigationExtras, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { NgbCalendar, NgbDate, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import * as moment from 'moment';
 import { Game } from 'src/app/model/game';
@@ -27,6 +27,8 @@ export class QuizBrowserComponent implements OnInit {
 
   gamesFiltered?: Game[];
 
+  playedGameIds: string[] = [];
+
   constructor(
     private fb: FormBuilder,
     private calendar: NgbCalendar,
@@ -46,6 +48,7 @@ export class QuizBrowserComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.gameService.playedGameIds().subscribe(ids => this.playedGameIds = ids);
     this.themeService.getAll().subscribe(themes => this.themes = themes);
     this.gameService.getAll().subscribe(games => {
       this.games = games;
@@ -113,12 +116,20 @@ export class QuizBrowserComponent implements OnInit {
     }
   }
 
+  isPlayed(gameId: string): boolean {
+    return this.playedGameIds.indexOf(gameId) !== -1;
+  }
+
+  isGameClosed(closeDate: Date): boolean {
+    return moment(closeDate).isBefore(moment().startOf('day'));
+  }
+
   search() {
     // TODO implement search filtering
   }
 
-  startGame(gameId: string): void {
-    this.gameService.startGame(gameId).subscribe(game => this.router.navigate(['game', game._id]));
+  startGame(game: Game): void {
+    this.gameService.startGame(game._id!).subscribe(game => this.router.navigate(['game', game._id]));
   }
 
   createNewGame() {

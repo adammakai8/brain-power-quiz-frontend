@@ -58,7 +58,8 @@
         "players": "Játékosok",
         "valid-date": "Lejárat"
       },
-      "play": "Játék"
+      "play": "Játék",
+      "results": "Eredmények"
     }
   },
   "game": {
