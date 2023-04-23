@@ -28,6 +28,7 @@ import { EntityListerComponent } from './pages/admin/entity-lister/entity-lister
 import { QuestionCreateComponent } from './pages/admin/question/question-create.component';
 import { QuestionUpdateComponent } from './pages/admin/question/question-update.component';
 import { QuestionService } from './services/question.service';
+import { StatisticsComponent } from './pages/statistics/statistics.component';
 
 export let AppInjector: Injector;
 
@@ -47,7 +48,8 @@ export let AppInjector: Injector;
     AdminnavbarComponent,
     EntityListerComponent,
     QuestionCreateComponent,
-    QuestionUpdateComponent
+    QuestionUpdateComponent,
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,

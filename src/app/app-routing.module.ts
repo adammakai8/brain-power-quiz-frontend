@@ -15,6 +15,7 @@ import { AuthGuard } from './authguard/authguard.guard';
 import { ReverseGuard } from './authguard/reverse.guard';
 import { GameComponent } from './pages/game/game.component';
 import { Game } from './model/game';
+import { StatisticsComponent } from './pages/statistics/statistics.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'newgame', component: QuizSettingsComponent, canActivate: [AuthGuard] },
   { path: 'browser', component: QuizBrowserComponent, canActivate: [AuthGuard] },
   { path: 'game/:id', component: GameComponent, canActivate: [AuthGuard] },
+  { path: 'statistics', component: StatisticsComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'login' }
 ];
 

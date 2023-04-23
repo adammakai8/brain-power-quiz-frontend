@@ -1,0 +1,63 @@
+<div class="h-100 m-5 mt-3 d-flex flex-column justify-content-center">
+    <div class="row justify-content-start">
+        <h1>{{ 'statistics.title' | translate }}</h1>
+    </div>
+    <div class="flex-fill d-flex mb-5">
+        <div class="d-flex flex-fill flex-column w-25">
+            <div class="fs-4">
+                {{ 'statistics.themes' | translate }}
+            </div>
+            <div class="d-flex flex-fill overflow-auto border white-bg p-1">
+                <div class="w-100">
+                    <table id="popular-themes" class="table table-striped-columns">
+                        <thead>
+                            <th scope="col" class="text-center align-middle"> # </th>
+                            <th scope="col" class="text-center align-middle"> {{ 'statistics.theme-table.name' | translate }} </th>
+                            <th scope="col" class="text-center align-middle text-wrap"> {{ 'statistics.theme-table.count' | translate }} </th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let themeCount of popularThemes; let i = index">
+                                <th scope="row">{{ i + 1 }}</th>
+                                <td>{{ themeCount.text }}</td>
+                                <td>{{ themeCount.gameCount }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-fill flex-column w-75 ms-4">
+            <div class="fs-4">
+                {{ 'statistics.groups.title' | translate }}
+            </div>
+            <div class="d-flex flex-fill flex-column">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link border white-bg" [ngClass]="{ 'active': activeTab === 'AGE' }" (click)="tabClicked('AGE')" role="button">
+                            {{ 'statistics.groups.age' | translate }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link border white-bg" [ngClass]="{ 'active': activeTab === 'THEME' }" (click)="tabClicked('THEME')" role="button">
+                            {{ 'statistics.groups.themes' | translate }}
+                        </a>
+                    </li>
+                </ul>
+                <div class="d-flex flex-fill overflow-auto border border-top-0 white-bg p-1">
+                    <div class="w-100">
+                        <table class="table table-striped-columns">
+                            <thead>
+                                <th scope="col" class="text-center align-middle">{{ getGroupName() }}</th>
+                                <th scope="col" class="text-center align-middle">{{ 'statistics.group-table.avg' | translate }}</th>
+                                <th scope="col" class="text-center align-middle text-wrap">{{ 'statistics.group-table.ratio-easy' | translate }}</th>
+                                <th scope="col" class="text-center align-middle text-wrap">{{ 'statistics.group-table.ratio-medium' | translate }}</th>
+                                <th scope="col" class="text-center align-middle text-wrap">{{ 'statistics.group-table.ratio-hard' | translate }}</th>
+                                <th scope="col" class="text-center align-middle text-wrap">{{ 'statistics.group-table.ratio-all' | translate }}</th>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

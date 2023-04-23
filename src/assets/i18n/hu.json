@@ -70,6 +70,28 @@
     "quit-confirm": "A játékot még nem fejezte be. Ha kilép, a jelenlegi játékállása elvész. Biztosan kilép?",
     "submit": "Befejezés"
   },
+  "statistics": {
+    "title": "Globális statisztikák",
+    "themes": "Legnépszerűbb témák",
+    "theme-table": {
+      "name": "Téma neve",
+      "count": "Előfordulások száma"
+    },
+    "group-table": {
+      "age": "Korcsoport",
+      "theme": "Téma",
+      "avg": "Átlagpontszám",
+      "ratio-easy": "Jó válaszok aránya (könnyű)",
+      "ratio-medium": "Jó válaszok aránya (közepes)",
+      "ratio-hard": "Jó válaszok aránya (nehéz)",
+      "ratio-all": "Jó válaszok aránya (összes)"
+    },
+    "groups": {
+      "title": "Csoportok teljesítménye",
+      "age": "Korcsoportonként",
+      "themes": "Témánként"
+    }
+  },
   "admin": {
     "navbar": {
       "theme": "Téma",
