@@ -31,7 +31,7 @@
                         {{entity.author.username}}
                     </td>
                     <td *ngIf="mode !== 'forum'" class="text-right">
-                        <a [routerLink]="['/' + mode + '/update/' + entity._id]" class="btn btn-warning">{{ 'admin.buttons.edit' | translate}}</a>
+                        <a [routerLink]="['/admin/' + mode + '/update/' + entity._id]" class="btn btn-warning">{{ 'admin.buttons.edit' | translate}}</a>
                     </td>
                     <td>
                         <button type="button" (click)="deleteEntity(entity._id)" class="btn btn-danger">{{ 'admin.buttons.delete' | translate}}</button>
@@ -51,7 +51,7 @@
             </div>
         </div>
         <div *ngIf="mode !== 'forum'" class="fixed-bottom mb-3 text-center">
-            <a [routerLink]="['/' + mode + '/create']" class="btn btn-primary">{{ 'admin.buttons.create' | translate}}</a>
+            <a [routerLink]="['/admin/' + mode + '/create']" class="btn btn-primary">{{ 'admin.buttons.create' | translate}}</a>
         </div>
     </div>
 </div>

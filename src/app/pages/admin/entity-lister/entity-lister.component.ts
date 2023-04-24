@@ -28,7 +28,7 @@ export class EntityListerComponent implements OnInit {
   private questionService: QuestionService = AppInjector.get(QuestionService);
   private forumService: ForumService = AppInjector.get(ForumService);
   constructor() {
-    this.mode = this.router.url.split("/")[1];
+    this.mode = this.router.url.split("/")[2];
   }
 
   ngOnInit() {

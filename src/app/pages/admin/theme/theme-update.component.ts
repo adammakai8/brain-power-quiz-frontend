@@ -37,7 +37,7 @@ export class ThemeUpdateComponent implements OnInit {
         this.theme.text = this.form.value.text;
         this.service.updateTheme(this.theme)
           .subscribe({
-            next: () => this.router.navigate(['/theme']),
+            next: () => this.router.navigate(['/admin/theme']),
             error: (error) => console.error(error)
           });
       } else {

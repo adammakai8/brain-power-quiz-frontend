@@ -17,18 +17,21 @@ import { GameComponent } from './pages/game/game.component';
 import { Game } from './model/game';
 import { StatisticsComponent } from './pages/statistics/statistics.component';
 
+const adminRoute: string = 'admin/';
+
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'adminlogin', component: AdminLoginComponent },
-  { path: 'theme', component: EntityListerComponent, canActivate: [AuthGuard] },
-  { path: 'theme/create', component: ThemeCreateComponent, canActivate: [AuthGuard] },
-  { path: 'theme/update/:id', component: ThemeUpdateComponent, canActivate: [AuthGuard] },
-  { path: 'question', component: EntityListerComponent, canActivate: [AuthGuard] },
-  { path: 'question/create', component: QuestionCreateComponent, canActivate: [AuthGuard] },
-  { path: 'question/update/:id', component: QuestionUpdateComponent, canActivate: [AuthGuard] },
-  { path: 'forum', component: EntityListerComponent, canActivate: [AuthGuard] },
+  { path: adminRoute + 'theme', component: EntityListerComponent, canActivate: [AuthGuard] },
+  { path: adminRoute + 'theme/create', component: ThemeCreateComponent, canActivate: [AuthGuard] },
+  { path: adminRoute + 'theme/update/:id', component: ThemeUpdateComponent, canActivate: [AuthGuard] },
+  { path: adminRoute + 'question', component: EntityListerComponent, canActivate: [AuthGuard] },
+  { path: adminRoute + 'question/create', component: QuestionCreateComponent, canActivate: [AuthGuard] },
+  { path: adminRoute + 'question/update/:id', component: QuestionUpdateComponent, canActivate: [AuthGuard] },
+  { path: adminRoute + 'forum', component: EntityListerComponent, canActivate: [AuthGuard] },
+  { path: 'forums', component: EntityListerComponent, canActivate: [AuthGuard] },
   { path: 'newgame', component: QuizSettingsComponent, canActivate: [AuthGuard] },
   { path: 'browser', component: QuizBrowserComponent, canActivate: [AuthGuard] },
   { path: 'game/:id', component: GameComponent, canActivate: [AuthGuard] },

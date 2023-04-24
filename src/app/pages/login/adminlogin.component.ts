@@ -30,7 +30,7 @@ export class AdminLoginComponent implements OnInit {
   login(): void {
     if (this.form.valid) {
       this.service.login(this.form.value)
-        .subscribe(() => this.router.navigate(['theme']));
+        .subscribe(() => this.router.navigate(['admin/theme']));
     } else {
       console.log('invalid form');
       

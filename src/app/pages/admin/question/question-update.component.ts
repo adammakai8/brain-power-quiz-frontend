@@ -79,10 +79,9 @@ export class QuestionUpdateComponent implements OnInit {
         let form_value = this.form.value;
         form_value.checkThemes = this.themes.filter(theme => form_value.checkThemes.includes(theme.text));
         this.question = new Question(this._id, this.form.value);
-        console.log(this.question);
         this.questionService.updateQuestion(this.question)
           .subscribe({
-            next: () => this.router.navigate(['/question']),
+            next: () => this.router.navigate(['/admin/question']),
             error: (error) => console.error(error)
           });
       } else {

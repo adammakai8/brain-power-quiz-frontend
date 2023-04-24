@@ -24,7 +24,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem("token");
-    this.router.navigate(['/login']);
+    window.location.reload();
     return this.http.get<any>(environment.backendUrl + '/auth/logout');
   }
 

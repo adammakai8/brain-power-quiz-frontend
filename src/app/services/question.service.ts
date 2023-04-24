@@ -22,7 +22,6 @@ export class QuestionService {
   }
 
   createQuestion(question: Question) {
-    console.log(question);
     return this.http.post<Question>(this.url + '/create', question);
   }
 

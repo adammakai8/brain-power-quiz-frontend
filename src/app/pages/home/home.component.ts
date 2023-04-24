@@ -22,7 +22,6 @@ export class HomeComponent implements OnInit {
 
   logout(): void {
     this.auth.logout();
-    this.navigateTo('login');
   }
 
 }

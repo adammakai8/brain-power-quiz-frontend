@@ -33,7 +33,7 @@ export class ThemeCreateComponent implements OnInit {
       if (this.form.valid) {
         this.service.createTheme(this.form.value)
           .subscribe({
-            next: () => this.router.navigate(['/theme']),
+            next: () => this.router.navigate(['/admin/theme']),
             error: (error) => console.error(error)
           });
       } else {

@@ -76,7 +76,6 @@ export class QuizSettingsComponent implements OnInit {
   createGame(): void {
     if (this.form.valid) {
       const formValue = _.cloneDeep(this.form.value);
-      console.log(formValue);
       formValue.closeDate = 
       `${formValue.closeDate.year}-${formValue.closeDate.month < 10 ? '0' : ''}${formValue.closeDate.month}-${formValue.closeDate.day}`
       this.gameService.createGame(formValue).subscribe(() => this.router.navigate(['browser']));

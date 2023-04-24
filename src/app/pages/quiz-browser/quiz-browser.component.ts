@@ -69,9 +69,6 @@ export class QuizBrowserComponent implements OnInit {
     const fromDate = this.form.get('fromDate');
     const toDate = this.form.get('toDate');
 
-    console.log(fromDate);
-    console.log(toDate);
-
     if (!fromDate?.value && !toDate?.value) {
 			fromDate?.setValue(date);
 		} else if (fromDate?.value && !toDate?.value && date.after(fromDate?.value)) {
