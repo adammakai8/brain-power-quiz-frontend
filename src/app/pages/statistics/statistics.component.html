@@ -54,6 +54,16 @@
                                 <th scope="col" class="text-center align-middle text-wrap">{{ 'statistics.group-table.ratio-hard' | translate }}</th>
                                 <th scope="col" class="text-center align-middle text-wrap">{{ 'statistics.group-table.ratio-all' | translate }}</th>
                             </thead>
+                            <tbody>
+                                <tr *ngFor="let group of activeTab === 'AGE' ? statisticsByAge : statisticsByTheme">
+                                    <th scope="row">{{ group.groupName }}</th>
+                                    <td>{{ group.averagePoints }}</td>
+                                    <td>{{ group.correctAnswerRatioEasy }}</td>
+                                    <td>{{ group.correctAnswerRatioMedium }}</td>
+                                    <td>{{ group.correctAnswerRatioHard }}</td>
+                                    <td>{{ group.correctAnswerRatioAll }}</td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>
