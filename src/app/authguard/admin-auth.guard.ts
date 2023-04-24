@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminAuthGuard implements CanActivate {
+  constructor(private router: Router) {}
+
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
@@ -17,7 +19,11 @@ export class AdminAuthGuard implements CanActivate {
       const isAdmin = JSON.parse(atob(token!.split('.')[1])).Role === 'ADMIN';
 
       if(isAdmin) return true;
-      return !(state.url.startsWith('/admin'));
+      if(state.url.startsWith('/admin')) {
+        this.router.navigate(['home'])
+        return false;
+      }
+      return true;
   }
   
 }
