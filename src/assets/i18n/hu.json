@@ -70,6 +70,14 @@
     "quit-confirm": "A játékot még nem fejezte be. Ha kilép, a jelenlegi játékállása elvész. Biztosan kilép?",
     "submit": "Befejezés"
   },
+  "ranklist": {
+    "title": "Ranglista",
+    "table": {
+      "name": "Játékos neve",
+      "points": "Összpontszám",
+      "stats": "Játékos statisztika"
+    }
+  },
   "statistics": {
     "title": "Globális statisztikák",
     "themes": "Legnépszerűbb témák",

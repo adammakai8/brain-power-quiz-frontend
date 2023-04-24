@@ -9,8 +9,6 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HomeComponent implements OnInit {
 
-  isCollapsed = true;
-
   constructor(private router: Router, private auth: AuthService) { }
 
   ngOnInit(): void {

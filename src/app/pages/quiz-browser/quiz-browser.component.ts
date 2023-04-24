@@ -117,6 +117,10 @@ export class QuizBrowserComponent implements OnInit {
     return this.playedGameIds.indexOf(gameId) !== -1;
   }
 
+  isGameFull(game: Game): boolean {
+    return game.players?.length === game.maximalPlayerNumber;
+  }
+
   isGameClosed(closeDate: Date): boolean {
     return moment(closeDate).isBefore(moment().startOf('day'));
   }

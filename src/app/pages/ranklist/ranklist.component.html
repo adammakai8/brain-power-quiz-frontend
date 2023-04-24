@@ -1,0 +1,30 @@
+<div class="h-100 m-5 mt-3 d-flex flex-column justify-content-center">
+    <div class="row justify-content-start">
+        <h1>{{ 'ranklist.title' | translate }}</h1>
+    </div>
+    <div class="flex-fill bg-white border mb-5 overflow-auto">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center">#</th>
+                    <th scope="col" class="text-center">{{ 'ranklist.table.name' | translate }}</th>
+                    <th scope="col" class="text-center">{{ 'ranklist.table.points' | translate }}</th>
+                    <th scope="col" class="text-center"></th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider overflow-auto">
+                <tr *ngFor="let user of users; let i = index">
+                    <th scope="row" class="text-center align-middle">{{ i + 1 }}</th>
+                    <td class="text-center align-middle">{{ user.user.username }}</td>
+                    <td class="text-center align-middle">{{ user.points }}</td>
+                    <td class="text-center align-middle">
+                        <button type="button" class="btn btn-info" (click)="''">
+                            {{ 'ranklist.table.stats' | translate }}
+                            <i class="bi bi-bar-chart-line-fill"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

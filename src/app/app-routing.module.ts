@@ -16,6 +16,7 @@ import { GameComponent } from './pages/game/game.component';
 import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { ForumBrowserComponent } from './pages/forum-browser/forum-browser.component';
 import { AdminAuthGuard } from './authguard/admin-auth.guard';
+import { RanklistComponent } from './pages/ranklist/ranklist.component';
 
 const adminRoute: string = 'admin/';
 
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'browser', component: QuizBrowserComponent, canActivate: [AuthGuard] },
   { path: 'game/:id', component: GameComponent, canActivate: [AuthGuard] },
   { path: 'statistics', component: StatisticsComponent, canActivate: [AuthGuard] },
+  { path: 'ranklist', component: RanklistComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'login' }
 ];
 

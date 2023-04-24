@@ -30,6 +30,7 @@ import { QuestionUpdateComponent } from './pages/admin/question/question-update.
 import { QuestionService } from './services/question.service';
 import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { ForumBrowserComponent } from './pages/forum-browser/forum-browser.component';
+import { RanklistComponent } from './pages/ranklist/ranklist.component';
 
 export let AppInjector: Injector;
 
@@ -51,7 +52,8 @@ export let AppInjector: Injector;
     QuestionCreateComponent,
     QuestionUpdateComponent,
     StatisticsComponent,
-    ForumBrowserComponent
+    ForumBrowserComponent,
+    RanklistComponent
   ],
   imports: [
     BrowserModule,

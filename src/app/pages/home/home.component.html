@@ -7,7 +7,7 @@
             <i class="bi bi-lightbulb"></i>
             {{ 'home.menu.new-game' | translate }}
         </div>
-        <div class="col card p-5 m-4 align-items-center">
+        <div class="col card p-5 m-4 align-items-center" (click)="navigateTo('ranklist')">
             <i class="bi bi-trophy"></i>
             {{ 'home.menu.ranks' | translate }}
         </div>
@@ -22,26 +22,12 @@
     </div>
     <div class="position-absolute bottom-0 end-0 w-100 me-5 mb-5 align-items-end">
         <div id="user-options" class="col d-flex justify-content-end">
-            <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
                 <button 
                     type="button" 
                     class="btn btn-primary btn-lg m-1"
                     (click)="logout()">
                         <i class="bi bi-door-open-fill"></i>
                 </button>
-                <button 
-                    type="button" 
-                    class="btn btn-primary btn-lg m-1">
-                        <i class="bi bi-gear-fill"></i>
-                </button>
-            </div>
-            
-            <button 
-                type="button" 
-                class="btn btn-primary btn-lg m-1"
-                (click)="isCollapsed = !isCollapsed">
-                    <i class="bi bi-person-fill"></i>
-            </button>
         </div>
     </div>
 </div>
