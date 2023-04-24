@@ -12,10 +12,10 @@ import { EntityListerComponent } from './pages/admin/entity-lister/entity-lister
 import { QuestionCreateComponent } from './pages/admin/question/question-create.component';
 import { QuestionUpdateComponent } from './pages/admin/question/question-update.component';
 import { AuthGuard } from './authguard/authguard.guard';
-import { ReverseGuard } from './authguard/reverse.guard';
 import { GameComponent } from './pages/game/game.component';
-import { Game } from './model/game';
 import { StatisticsComponent } from './pages/statistics/statistics.component';
+import { ForumBrowserComponent } from './pages/forum-browser/forum-browser.component';
+import { AdminAuthGuard } from './authguard/admin-auth.guard';
 
 const adminRoute: string = 'admin/';
 
@@ -24,14 +24,14 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'adminlogin', component: AdminLoginComponent },
-  { path: adminRoute + 'theme', component: EntityListerComponent, canActivate: [AuthGuard] },
-  { path: adminRoute + 'theme/create', component: ThemeCreateComponent, canActivate: [AuthGuard] },
-  { path: adminRoute + 'theme/update/:id', component: ThemeUpdateComponent, canActivate: [AuthGuard] },
-  { path: adminRoute + 'question', component: EntityListerComponent, canActivate: [AuthGuard] },
-  { path: adminRoute + 'question/create', component: QuestionCreateComponent, canActivate: [AuthGuard] },
-  { path: adminRoute + 'question/update/:id', component: QuestionUpdateComponent, canActivate: [AuthGuard] },
-  { path: adminRoute + 'forum', component: EntityListerComponent, canActivate: [AuthGuard] },
-  { path: 'forums', component: EntityListerComponent, canActivate: [AuthGuard] },
+  { path: adminRoute + 'theme', component: EntityListerComponent, canActivate: [AdminAuthGuard] },
+  { path: adminRoute + 'theme/create', component: ThemeCreateComponent, canActivate: [AdminAuthGuard] },
+  { path: adminRoute + 'theme/update/:id', component: ThemeUpdateComponent, canActivate: [AdminAuthGuard] },
+  { path: adminRoute + 'question', component: EntityListerComponent, canActivate: [AdminAuthGuard] },
+  { path: adminRoute + 'question/create', component: QuestionCreateComponent, canActivate: [AdminAuthGuard] },
+  { path: adminRoute + 'question/update/:id', component: QuestionUpdateComponent, canActivate: [AdminAuthGuard] },
+  { path: adminRoute + 'forum', component: EntityListerComponent, canActivate: [AdminAuthGuard] },
+  { path: 'forum', component: ForumBrowserComponent, canActivate: [AuthGuard] },
   { path: 'newgame', component: QuizSettingsComponent, canActivate: [AuthGuard] },
   { path: 'browser', component: QuizBrowserComponent, canActivate: [AuthGuard] },
   { path: 'game/:id', component: GameComponent, canActivate: [AuthGuard] },

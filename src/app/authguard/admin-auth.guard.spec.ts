@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ReverseGuard } from './reverse.guard';
+import { AdminAuthGuard } from './admin-auth.guard';
 
-describe('ReverseGuard', () => {
-  let guard: ReverseGuard;
+describe('AdminAuthGuard', () => {
+  let guard: AdminAuthGuard;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    guard = TestBed.inject(ReverseGuard);
+    guard = TestBed.inject(AdminAuthGuard);
   });
 
   it('should be created', () => {
