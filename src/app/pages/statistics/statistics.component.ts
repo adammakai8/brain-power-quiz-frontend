@@ -42,4 +42,8 @@ export class StatisticsComponent implements OnInit {
   getGroupName(): string {
     return this.translate.instant('statistics.group-table.' + (this.activeTab === 'AGE' ? 'age' : 'theme'));
   }
+
+  round(num: number): number {
+    return Math.round((num + Number.EPSILON) * 100) / 100;
+  }
 }

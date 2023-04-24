@@ -57,11 +57,11 @@
                             <tbody>
                                 <tr *ngFor="let group of activeTab === 'AGE' ? statisticsByAge : statisticsByTheme">
                                     <th scope="row">{{ group.groupName }}</th>
-                                    <td>{{ group.averagePoints }}</td>
-                                    <td>{{ group.correctAnswerRatioEasy }}</td>
-                                    <td>{{ group.correctAnswerRatioMedium }}</td>
-                                    <td>{{ group.correctAnswerRatioHard }}</td>
-                                    <td>{{ group.correctAnswerRatioAll }}</td>
+                                    <td>{{ round(group.averagePoints) }}</td>
+                                    <td>{{ round(group.correctAnswerRatioEasy) }}</td>
+                                    <td>{{ round(group.correctAnswerRatioMedium) }}</td>
+                                    <td>{{ round(group.correctAnswerRatioHard) }}</td>
+                                    <td>{{ round(group.correctAnswerRatioAll) }}</td>
                                 </tr>
                             </tbody>
                         </table>
