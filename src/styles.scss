@@ -28,3 +28,14 @@ html {
 .mt-6 {
     margin-top: ($spacer * 6) !important;
 }
+
+.forum-browser {
+    height: calc(100vh - 50px);
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.forum-browser::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari, and Opera */
+}

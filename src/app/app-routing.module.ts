@@ -17,6 +17,7 @@ import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { ForumBrowserComponent } from './pages/forum-browser/forum-browser.component';
 import { AdminAuthGuard } from './authguard/admin-auth.guard';
 import { RanklistComponent } from './pages/ranklist/ranklist.component';
+import { ForumComponent } from './pages/forum/forum.component';
 
 const adminRoute: string = 'admin/';
 
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: adminRoute + 'question/update/:id', component: QuestionUpdateComponent, canActivate: [AdminAuthGuard] },
   { path: adminRoute + 'forum', component: EntityListerComponent, canActivate: [AdminAuthGuard] },
   { path: 'forum', component: ForumBrowserComponent, canActivate: [AuthGuard] },
+  { path: 'forum/:id', component: ForumComponent, canActivate: [AuthGuard] },
   { path: 'newgame', component: QuizSettingsComponent, canActivate: [AuthGuard] },
   { path: 'browser', component: QuizBrowserComponent, canActivate: [AuthGuard] },
   { path: 'game/:id', component: GameComponent, canActivate: [AuthGuard] },

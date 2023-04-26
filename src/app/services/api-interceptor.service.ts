@@ -3,20 +3,24 @@ import { Injectable } from '@angular/core';
 import { error } from 'console';
 import { Observable, catchError, throwError } from 'rxjs';
 import { AuthService } from './auth.service';
+import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TokenInterceptor implements HttpInterceptor {
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private tokenService: TokenService,
+    private authService: AuthService
+    ) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if(localStorage.getItem('token') === null) return next.handle(request);
+    if(!this.tokenService.isNotNull()) return next.handle(request);
 
     request = request.clone({
       setHeaders: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`
+        Authorization: `Bearer ${this.tokenService.getToken()}`
       }
     });
 
