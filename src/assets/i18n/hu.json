@@ -112,6 +112,17 @@
       "themes": "Kedvenc témák"
     }
   },
+ "forum-browser": {
+  "create": "Létrehoz",
+  "question": "Kérdés: ",
+  "written": "Írta: ",
+  "answersNumber": "Válaszok száma: ",
+  "delete": "Fórum törlése"
+ },
+ "forum": {
+  "create": "Hozzászólás létrehozása",
+  "comment": "Hozzászólás: "
+ },
   "admin": {
     "navbar": {
       "theme": "Téma",

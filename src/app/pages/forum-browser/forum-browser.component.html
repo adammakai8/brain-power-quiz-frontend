@@ -1,23 +1,31 @@
-<div class="h-100 border d-flex flex-column align-items-center justify-content-center overflow-auto">
-    <div id="title" class="row m-5">
-        <h1>{{ 'home.title' | translate }}</h1>
+<div class="w-50 m-auto sticky-top">
+    <div class="input-group">
+        <span class="input-group-text">{{ 'forum-browser.question' | translate }}</span>
+        <textarea id="area" maxlength="250" class="form-control" #textArea></textarea>
+        <button class="btn btn-outline-primary" type="button" id="add" (click)="create(textArea.value)">
+            {{ 'forum-browser.create' | translate }}
+        </button>
     </div>
-    <div id="menu" class="row align-items-center p-5 w-100 fs-1 mb-5">
-        <div id="new-game" class="col card p-5 m-4 align-items-center text-center">
-            <i class="bi bi-lightbulb"></i>
-            {{ 'home.menu.new-game' | translate }}
-        </div>
-        <div class="col card p-5 m-4 align-items-center">
-            <i class="bi bi-trophy"></i>
-            {{ 'home.menu.ranks' | translate }}
-        </div>
-        <div class="col card p-5 m-4 align-items-center">
-            <i class="bi bi-bar-chart-line-fill"></i>
-            {{ 'home.menu.statistics' | translate }}
-        </div>
-        <div class="col card p-5 m-4 align-items-center">
-            <i class="bi bi-chat-left-text"></i>
-            {{ 'home.menu.forum' | translate }}
+</div>
+<div *ngIf="isLoading | async">
+    <div *ngIf="forums!.length === 0" class="d-flex position-absolute w-100 h-100 align-items-center justify-content-center">
+        <h2><i>{{ 'admin.empty' | translate}}</i></h2>
+    </div>
+    <div *ngIf="forums!.length !== 0">
+        <div class="d-flex flex-column flex-fill align-items-center forum-browser">
+            <div *ngFor="let forum of forums; let i = index">
+                <a class="nav-link d-inline-block w-auto fs-1 mt-1 mb-3" [routerLink]="['/forum/' + forum._id]">
+                    <div class="col bg-primary text-white card py-2 px-5 align-items-center">
+                        <div>{{ forum.question }}</div>
+                        <div class="h6">
+                            {{ 'forum-browser.written' | translate }} {{ forum.author.username }}
+                        </div>
+                        <div class="h6">
+                            {{ 'forum-browser.answersNumber' | translate }} {{(forum.comments === null ? 0 : forum.comments!.length)}}
+                        </div>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
-<div>
+</div>

@@ -1,0 +1,48 @@
+<div *ngIf="isLoading | async">
+    <div class="w-50 m-auto fs-1 mt-2 sticky-top">
+        <div class="card bg-primary text-white py-2 px-5 align-items-center">
+            <div>{{ forum.question }}</div>
+            <div class="h6">
+                {{ 'forum-browser.written' | translate }} {{ forum.author.username }}
+            </div>
+            <div class="h6">
+                {{ 'forum-browser.answersNumber' | translate }} {{(forum.comments === null ? 0 : forum.comments!.length)}}
+            </div>
+        </div>
+    </div>
+    <div *ngIf="forum.comments !== null">
+        <div class="d-flex flex-column align-items-center forum-browser">
+            <div *ngFor="let answer of forum.comments">
+                <div class="d-inline-block w-auto mt-1 mb-3">
+                    <div class="col card py-2 px-5 align-items-center">
+                        <div>{{ answer.text }}</div>
+                        <div>{{ 'forum-browser.written' | translate }} {{ answer.author.username }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="tokenService.getAuthor() !== forum.author.username" class="d-flex align-items-center justify-content-center">
+        <div class="input-group fixed-bottom mb-3 w-50 m-auto">
+            <span class="input-group-text">{{ 'forum.comment' | translate }}</span>
+            <textarea id="area" maxlength="250" class="form-control" #textArea></textarea>
+            <button class="btn btn-outline-primary" type="button" id="add" (click)="create(textArea.value)">
+                {{ 'forum.create' | translate }}
+            </button>
+        </div>
+    </div>
+    <div
+    *ngIf="tokenService.getAuthor() === forum.author.username && (forum.comments === null || forum.comments!.length === 0)"
+    class="d-flex align-items-center justify-content-center">
+        <button class="w-25 btn btn-danger fixed-bottom mb-3" (click)="deleteForum()">
+            {{ 'forum-browser.delete' | translate }}
+        </button>
+    </div>
+</div>
+
+<!--
+    _id?: string;
+    question!: string;
+    author!: User;
+    comments?: ForumComment[];
+-->

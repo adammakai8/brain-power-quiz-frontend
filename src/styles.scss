@@ -33,3 +33,15 @@ html {
     height: 5rem;
     width: 5rem;
 }
+
+
+.forum-browser {
+    height: calc(100vh - 50px);
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.forum-browser::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari, and Opera */
+}
