@@ -1,12 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbCalendar, NgbDate, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCalendar, NgbDate, NgbDateParserFormatter, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as moment from 'moment';
+import { ResultComponent } from 'src/app/dialogs/result/result.component';
 import { Game } from 'src/app/model/game';
 import { Theme } from 'src/app/model/theme';
 import { GameService } from 'src/app/services/game.service';
 import { ThemeService } from 'src/app/services/theme.service';
+
+enum ActionButtonButtonType {
+  PLAY = 'PLAY',
+  PRE_RESULT = 'PRE_RESULT',
+  RESULT = 'RESULT',
+  LOADING = 'LOADING'
+}
 
 @Component({
   selector: 'app-quiz-browser',
@@ -27,7 +35,7 @@ export class QuizBrowserComponent implements OnInit {
 
   gamesFiltered?: Game[];
 
-  playedGameIds: string[] = [];
+  playedGameIds?: string[];
 
   constructor(
     private fb: FormBuilder,
@@ -35,7 +43,8 @@ export class QuizBrowserComponent implements OnInit {
     public formatter: NgbDateParserFormatter,
     private router: Router,
     private themeService: ThemeService,
-    private gameService: GameService
+    private gameService: GameService,
+    private modalService: NgbModal
   ) {
     this.form = fb.group({
       themes: new FormControl([]),
@@ -114,7 +123,7 @@ export class QuizBrowserComponent implements OnInit {
   }
 
   isPlayed(gameId: string): boolean {
-    return this.playedGameIds.indexOf(gameId) !== -1;
+    return this.playedGameIds?.indexOf(gameId) !== -1;
   }
 
   isGameFull(game: Game): boolean {
@@ -125,8 +134,25 @@ export class QuizBrowserComponent implements OnInit {
     return moment(closeDate).isBefore(moment().startOf('day'));
   }
 
-  search() {
-    // TODO implement search filtering
+  getActionButtonType(game: Game): string {
+    if (!this.playedGameIds) {
+      return ActionButtonButtonType.LOADING;
+    }
+    if (!this.isPlayed(game._id!) && !this.isGameClosed(game.closeDate) && !this.isGameFull(game)) {
+      return ActionButtonButtonType.PLAY;
+    } else if (this.isPlayed(game._id!)) {
+      return ActionButtonButtonType.PRE_RESULT;
+    } else if (this.isGameClosed(game.closeDate) || game.maximalPlayerNumber === game.players?.length) {
+      return ActionButtonButtonType.RESULT;
+    }
+    return ActionButtonButtonType.LOADING;
+  }
+
+  viewResults(game: Game, isClosed: boolean): void {
+    const modalRef = this.modalService.open(ResultComponent, { centered: true, size: 'lg' });
+    modalRef.componentInstance.game = game;
+    modalRef.componentInstance.isClosed = isClosed;
+
   }
 
   startGame(game: Game): void {

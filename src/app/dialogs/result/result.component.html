@@ -1,0 +1,41 @@
+<div class="modal-header">
+    <div class="modal-title fs-4" id="userStatTitle">
+        {{
+            (isClosed ? 'quiz-browser.results.title' : 'quiz-browser.results.pretitle') | translate: { quizName: game!.name }
+        }}
+    </div>
+    <button type="button" class="btn-close" (click)="activeModal.dismiss()"></button>
+</div>
+<div class="modal-body">
+    <div *ngIf="rankings.length > 0; else loading" class="flex-fill bg-white border mb-5 overflow-auto">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center">#</th>
+                    <th scope="col" class="text-center">{{ 'ranklist.table.name' | translate }}</th>
+                    <th scope="col" class="text-center">{{ 'ranklist.table.points' | translate }}</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider overflow-auto">
+                <tr *ngFor="let user of rankings; let i = index" [ngClass]="{ 'table-info': isCurrentUser(user.user.username) }">
+                    <th scope="row" class="text-center align-middle">{{ i + 1 }}</th>
+                    <td class="text-center align-middle">{{ user.user.username }}</td>
+                    <td class="text-center align-middle">{{ user.points }}</td>
+                </tr>
+                <tr *ngFor="let item of emptyRowSequence(); let i = index">
+                    <th scope="row" class="text-center align-middle">{{ i + (!game || !game.players ? 0 : game.players.length) + 1 }}</th>
+                    <td class="text-center align-middle">-</td>
+                    <td class="text-center align-middle">-</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <ng-template #loading>
+        <div  class="d-flex flex-fill justify-content-center fs-3 align-items-center">
+            <div class="spinner-border" role="status"></div>
+        </div>
+    </ng-template>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close()">{{ 'statistics.user.ok' | translate }}</button>
+</div>

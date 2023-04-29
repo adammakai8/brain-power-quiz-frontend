@@ -4,6 +4,7 @@ import { UserStatsComponent } from 'src/app/dialogs/user-stats/user-stats.compon
 import { UserRanklist } from 'src/app/model/statistics/ranklist';
 import { User } from 'src/app/model/user';
 import { StatisticsService } from 'src/app/services/statistics.service';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-ranklist',
@@ -14,11 +15,13 @@ export class RanklistComponent implements OnInit {
 
   users: UserRanklist[] = [];
   selectedUser?: User;
+  currentUsername?: string;
 
-  constructor(private statisticsService: StatisticsService, private modalService: NgbModal) { }
+  constructor(private statisticsService: StatisticsService, private modalService: NgbModal, private tokenService: TokenService) { }
 
   ngOnInit(): void {
     this.statisticsService.getRanklist().subscribe(list => this.users = list.sort((a, b) => b.points - a.points));
+    this.currentUsername = this.tokenService.getAuthor();
   }
 
   openUserStatistics(user: User): void {
@@ -26,4 +29,7 @@ export class RanklistComponent implements OnInit {
     modalRef.componentInstance.user = user;
   }
 
+  isCurrentUser(username: string): boolean {
+    return this.currentUsername === username;
+  }
 }

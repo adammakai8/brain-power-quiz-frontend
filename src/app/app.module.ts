@@ -33,6 +33,7 @@ import { ForumBrowserComponent } from './pages/forum-browser/forum-browser.compo
 import { RanklistComponent } from './pages/ranklist/ranklist.component';
 import { ForumComponent } from './pages/forum/forum.component';
 import { UserStatsComponent } from './dialogs/user-stats/user-stats.component';
+import { ResultComponent } from './dialogs/result/result.component';
 
 export let AppInjector: Injector;
 
@@ -57,7 +58,8 @@ export let AppInjector: Injector;
     ForumBrowserComponent,
     RanklistComponent,
     UserStatsComponent,
-    ForumComponent
+    ForumComponent,
+    ResultComponent
   ],
   imports: [
     BrowserModule,

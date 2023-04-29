@@ -59,7 +59,12 @@
         "valid-date": "Lejárat"
       },
       "play": "Játék",
-      "results": "Eredmények"
+      "results": "Eredmények",
+      "preresult": "Előzetes eredmények"
+    },
+    "results": {
+      "title": "{{quizName}} játék eredményei",
+      "pretitle": "{{quizName}} játék előzetes eredményei"
     }
   },
   "game": {

@@ -31,4 +31,8 @@ export class StatisticsService {
   getUserStatistics(userId: string): Observable<UserStatistics> {
     return this.http.get(this.url + `/users/${userId}`) as Observable<UserStatistics>;
   }
+
+  getGameResults(gameId: string): Observable<UserRanklist[]> {
+    return this.http.get(this.url + `/${gameId}/results`) as Observable<UserRanklist[]>;
+  }
 }

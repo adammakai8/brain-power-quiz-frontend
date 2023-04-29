@@ -13,7 +13,7 @@
                 </tr>
             </thead>
             <tbody class="table-group-divider overflow-auto">
-                <tr *ngFor="let user of users; let i = index">
+                <tr *ngFor="let user of users; let i = index" [ngClass]="{ 'table-info': isCurrentUser(user.user.username) }">
                     <th scope="row" class="text-center align-middle">{{ i + 1 }}</th>
                     <td class="text-center align-middle">{{ user.user.username }}</td>
                     <td class="text-center align-middle">{{ user.points }}</td>
