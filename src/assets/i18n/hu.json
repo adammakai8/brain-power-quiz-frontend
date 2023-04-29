@@ -88,6 +88,7 @@
     "group-table": {
       "age": "Korcsoport",
       "theme": "Téma",
+      "diff": "Nehézség",
       "avg": "Átlagpontszám",
       "ratio-easy": "Jó válaszok aránya (könnyű)",
       "ratio-medium": "Jó válaszok aránya (közepes)",
@@ -98,6 +99,17 @@
       "title": "Csoportok teljesítménye",
       "age": "Korcsoportonként",
       "themes": "Témánként"
+    },
+    "difficulty": {
+      "0": "Könnyű",
+      "1": "Közepes",
+      "2": "Nehéz"
+    },
+    "user": {
+      "title": "{{username}} statisztikái",
+      "ok": "OK",
+      "points": "Átlagpontszám (összesen):",
+      "themes": "Kedvenc témák"
     }
   },
   "admin": {

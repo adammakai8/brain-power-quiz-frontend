@@ -31,6 +31,7 @@ import { QuestionService } from './services/question.service';
 import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { ForumBrowserComponent } from './pages/forum-browser/forum-browser.component';
 import { RanklistComponent } from './pages/ranklist/ranklist.component';
+import { UserStatsComponent } from './dialogs/user-stats/user-stats.component';
 
 export let AppInjector: Injector;
 
@@ -53,7 +54,8 @@ export let AppInjector: Injector;
     QuestionUpdateComponent,
     StatisticsComponent,
     ForumBrowserComponent,
-    RanklistComponent
+    RanklistComponent,
+    UserStatsComponent
   ],
   imports: [
     BrowserModule,

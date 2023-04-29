@@ -2,8 +2,8 @@
     <div class="row justify-content-start">
         <h1>{{ 'ranklist.title' | translate }}</h1>
     </div>
-    <div class="flex-fill bg-white border mb-5 overflow-auto">
-        <table class="table table-striped">
+    <div class="flex-fill bg-white border mb-5 overflow-auto" [ngClass]="{ 'd-flex': users.length === 0 }">
+        <table class="table table-striped" *ngIf="users.length > 0; else loading">
             <thead>
                 <tr>
                     <th scope="col" class="text-center">#</th>
@@ -18,7 +18,7 @@
                     <td class="text-center align-middle">{{ user.user.username }}</td>
                     <td class="text-center align-middle">{{ user.points }}</td>
                     <td class="text-center align-middle">
-                        <button type="button" class="btn btn-info" (click)="''">
+                        <button type="button" class="btn btn-info" (click)="openUserStatistics(user.user)" >
                             {{ 'ranklist.table.stats' | translate }}
                             <i class="bi bi-bar-chart-line-fill"></i>
                         </button>
@@ -26,5 +26,10 @@
                 </tr>
             </tbody>
         </table>
+        <ng-template #loading>
+            <div  class="d-flex flex-fill justify-content-center fs-3 align-items-center">
+                <div class="spinner-border" role="status"></div>
+            </div>
+        </ng-template>
     </div>
 </div>

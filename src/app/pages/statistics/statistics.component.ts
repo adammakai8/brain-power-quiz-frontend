@@ -46,4 +46,8 @@ export class StatisticsComponent implements OnInit {
   round(num: number): number {
     return Math.round((num + Number.EPSILON) * 100) / 100;
   }
+
+  statisticsQueried(): boolean {
+    return this.statisticsByAge.length > 0 && this.statisticsByTheme.length > 0;
+  }
 }
