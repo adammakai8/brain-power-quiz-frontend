@@ -65,15 +65,15 @@
                             <div class="row m-1">
                                 <div class="col">
                                     <label class="form-label ps-0" for="easy-custom">{{ 'quiz-settings.diffculty.options.custom.easy' | translate }}</label>
-                                    <input type="number" class="form-control me-1" max="7" min="0" value="" id="easy-custom" formControlName="easyQuestions" (change)="handleInputChange()">
+                                    <input type="number" class="form-control me-1" max="7" min="0" pattern="\d+" value="" id="easy-custom" formControlName="easyQuestions" (change)="handleInputChange()">
                                 </div>
                                 <div class="col">
                                     <label class="form-label ps-0" for="med-custom">{{ 'quiz-settings.diffculty.options.custom.medium' | translate }}</label>
-                                    <input type="number" class="form-control me-1" max="7" min="0" value="" id="med-custom" formControlName="mediumQuestions" (change)="handleInputChange()">
+                                    <input type="number" class="form-control me-1" max="7" min="0" pattern="\d+" value="" id="med-custom" formControlName="mediumQuestions" (change)="handleInputChange()">
                                 </div>
                                 <div class="col">
                                     <label class="form-label ps-0" for="hard-custom">{{ 'quiz-settings.diffculty.options.custom.hard' | translate }}</label>
-                                    <input type="number" class="form-control me-1" max="7" min="0" value="" id="hard-custom" formControlName="hardQuestions" (change)="handleInputChange()">
+                                    <input type="number" class="form-control me-1" max="7" min="0" pattern="\d+" value="" id="hard-custom" formControlName="hardQuestions" (change)="handleInputChange()">
                                 </div>
                             </div>
                         </li>
