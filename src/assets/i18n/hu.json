@@ -103,6 +103,7 @@
     "groups": {
       "title": "Csoportok teljesítménye",
       "age": "Korcsoportonként",
+      "diff": "Nehézség",
       "themes": "Témánként"
     },
     "difficulty": {
